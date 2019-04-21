@@ -3,18 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Model\Product;
+use App\Repository\IProduct;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class ProductController extends Controller
 {
     /**
+     * @var IProduct
+     */
+    private $product;
+
+    /**
+     * ProductController constructor.
+     * @param IProduct $product
+     */
+    public function __construct(IProduct $product)
+    {
+        $this->product = $product;
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function index()
+    public function index(Request $request): Response
     {
-        //
+        $products = $this->product->getAllProduct($request->query->get('search'));
+
+        return view('product.index', [
+            'products' => $products
+        ]);
     }
 
     /**

@@ -19,16 +19,21 @@ class ProductRepository implements IProduct
 
     /**
      * ProductRepository constructor.
-     * @param Product $product
      */
-    public function __construct(Product $product)
+    public function __construct()
     {
-        $this->product = $product;
+        $this->product = (new Product())->newQuery();
     }
 
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
     {
-        // TODO: Implement getAllProduct() method.
+        $products = $this->product->with('details', 'manufacturer');
+
+        if($inputSearch !== null){
+            $products->where('name', 'like', '%'.$inputSearch.'%');
+        }
+
+        return $products->paginate(10);
     }
 
     public function getProduct(int $id)
