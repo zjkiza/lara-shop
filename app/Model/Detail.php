@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Detail
@@ -16,4 +17,12 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
     protected $guarded = [];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'detail_product');
+    }
 }
