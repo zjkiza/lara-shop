@@ -29,8 +29,8 @@ class ProductRepository implements IProduct
     {
         $products = $this->product->with('details', 'manufacturer');
 
-        if($inputSearch !== null){
-            $products->where('name', 'like', '%'.$inputSearch.'%');
+        if ($inputSearch !== null) {
+            $products->where('name', 'like', '%' . $inputSearch . '%');
         }
 
         return $products->paginate(10);
@@ -41,9 +41,14 @@ class ProductRepository implements IProduct
         // TODO: Implement getProduct() method.
     }
 
-    public function storeProduct(array $data): void
+    public function storeProduct(array $data, ?array $pivot): void
     {
-        // TODO: Implement storeProduct() method.
+        /** @var Product $saveProduct */
+        $saveProduct = $this->product->create($data);
+
+        if ($pivot !== null) {
+            $saveProduct->details()->sync($pivot);
+        }
     }
 
     public function updateProduct(array $data, int $id): void

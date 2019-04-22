@@ -56,4 +56,16 @@ class Product extends Model
     {
         return $this->belongsToMany(Detail::class, 'detail_product');
     }
+
+    public function validateData()
+    {
+        return request()->validate([
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:5|max:1000',
+            'quantity' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0.01',
+            'manufacturer_id' => 'required',
+            'category_id' => 'required',
+        ]);
+    }
 }

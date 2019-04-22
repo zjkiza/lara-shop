@@ -14,7 +14,7 @@ interface IProduct
 {
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator;
     public function getProduct(int $id);
-    public function storeProduct(array $data): void;
+    public function storeProduct(array $data, ?array $pivot): void;
     public function updateProduct(array $data, int $id): void;
     public function deleteProduct(int $id): void;
 }
