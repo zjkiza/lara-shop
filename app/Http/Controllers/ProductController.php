@@ -75,7 +75,7 @@ class ProductController extends Controller
     {
         $this->product->storeProduct((new Product())->validateData(), $request->get('details'));
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product success add');
     }
 
     /**
@@ -136,7 +136,7 @@ class ProductController extends Controller
     {
         $this->product->updateProduct($id, (new Product())->validateData(), $request->get('details'));
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product success updated');
     }
 
     /**
@@ -150,6 +150,6 @@ class ProductController extends Controller
     {
         $this->product->deleteProduct($id);
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product success deleted');
     }
 }

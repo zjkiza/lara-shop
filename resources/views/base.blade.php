@@ -18,6 +18,8 @@
 
 <div class="container">
 
+    @include('layer.flash-message')
+
     @yield('content')
 
 </div>

@@ -18,28 +18,29 @@
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('name') ? 'alert-danger' : '' }}"
-                       id="name" name="name" value="{{ old('name') ?? $product->name }}">
+                       id="name" name="name" value="{{ $errors->has('name') ? old('name') : $product->name }}">
             </div>
         </div>
         <div class="form-group row">
             <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
+                {{--@php dump(old('description')) @endphp--}}
                 <textarea type="text" class="form-control {{ $errors->has('description') ? 'alert-danger' : '' }}"
-                          id="description" name="description">{{ old('description') ?? $product->description }}</textarea>
+                          id="description" name="description">{{ $errors->has('description') ?  old('description') : $product->description }}</textarea>
             </div>
         </div>
         <div class="form-group row">
             <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('quantity') ? 'alert-danger' : '' }}"
-                       id="quantity" name="quantity" value="{{ old('quantity') ?? $product->quantity }}">
+                       id="quantity" name="quantity" value="{{ $errors->has('quantity') ? old('quantity') : $product->quantity }}">
             </div>
         </div>
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('price') ? 'alert-danger' : '' }}"
-                       id="price" name="price" value="{{ old('price') ?? $product->price }}">
+                       id="price" name="price" value="{{ $errors->has('price') ? old('price') : $product->price }}">
             </div>
         </div>
         <div class="form-group row">

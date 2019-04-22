@@ -70,6 +70,10 @@ class ProductRepository implements IProduct
         $product->details()->sync($pivotData);
     }
 
+    /**
+     * @param int $id
+     * @throws \Exception
+     */
     public function deleteProduct(int $id): void
     {
         $product = $this->getProduct($id);
