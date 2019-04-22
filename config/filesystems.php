@@ -64,6 +64,9 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'myDisks' => [
+            'storage' => 'public/files',
+        ]
     ],
 
 ];

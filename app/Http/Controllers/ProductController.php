@@ -50,7 +50,7 @@ class ProductController extends Controller
      * @param CategoryRepository $categoryRepository
      * @param DetailRepository $detailRepository
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(
         ManufacturerRepository $manufacturerRepository,

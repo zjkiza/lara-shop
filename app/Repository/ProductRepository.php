@@ -38,7 +38,7 @@ class ProductRepository implements IProduct
 
     public function getProduct(int $id)
     {
-        // TODO: Implement getProduct() method.
+        return $this->product->with('category', 'manufacturer', 'pictures', 'details')->findOrFail($id);
     }
 
     public function storeProduct(array $data, ?array $pivot): void
