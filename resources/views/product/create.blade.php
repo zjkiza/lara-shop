@@ -27,6 +27,16 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Status</label>
+
+                @foreach($statuses as $status)
+                    <div class="form-check {{ $errors->has('status') ? 'alert-danger' : '' }}">
+                            <label for="status" class="col-sm-2 col-form-label">{{ $status }}</label>
+                            <input type="radio" class="form-control" id="status" name="status" value="{{ $status }}" {{ old('status')===$status ? 'checked' : '' }}>
+                     </div>
+                @endforeach
+        </div>
+        <div class="form-group row">
             <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('quantity') ? 'alert-danger' : '' }}"
@@ -45,7 +55,7 @@
             <div class="col-sm-10">
                 <select id="manufacturer" name="manufacturer_id" class="form-control">
                     @foreach($manufacturers as $manufacturer)
-                        <option value="{{ $manufacturer->id }}" {{ (int)old('manufacturer')===$manufacturer->id ? 'selected' : ''  }}>
+                        <option value="{{ $manufacturer->id }}" {{ (int)old('manufacturer_id')===$manufacturer->id ? 'selected' : ''  }}>
                             {{ $manufacturer->name }}
                         </option>
                     @endforeach
@@ -57,7 +67,7 @@
             <div class="col-sm-10">
                 <select id="category" name="category_id" class="form-control">
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ (int)old('category')===$category->id ? 'selected' : ''  }}>
+                        <option value="{{ $category->id }}" {{ (int)old('category_id')===$category->id ? 'selected' : ''  }}>
                             {{ $category->name }}
                         </option>
                     @endforeach

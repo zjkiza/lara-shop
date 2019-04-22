@@ -24,10 +24,21 @@
         <div class="form-group row">
             <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
-                {{--@php dump(old('description')) @endphp--}}
                 <textarea type="text" class="form-control {{ $errors->has('description') ? 'alert-danger' : '' }}"
                           id="description" name="description">{{ $errors->has('description') ?  old('description') : $product->description }}</textarea>
             </div>
+        </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Status</label>
+
+            @php $status_value = old('status') ?? $product->status @endphp
+
+            @foreach($statuses as $status)
+                <div class="form-check {{ $errors->has('status') ? 'alert-danger' : '' }}">
+                    <label for="status" class="col-sm-2 col-form-label">{{ $status }}</label>
+                    <input type="radio" class="form-control" id="status" name="status" value="{{ $status }}" {{ $status_value===$status ? 'checked' : '' }}>
+                </div>
+            @endforeach
         </div>
         <div class="form-group row">
             <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
@@ -48,7 +59,7 @@
             <div class="col-sm-10">
                 <select id="manufacturer" name="manufacturer_id" class="form-control">
 
-                    @php $manufacturer_id = old('manufacturer') ?? $product->manufacturer->id @endphp
+                    @php $manufacturer_id = old('manufacturer_id') ?? $product->manufacturer->id @endphp
 
                     @foreach($manufacturers as $manufacturer)
                         <option value="{{ $manufacturer->id }}" {{ (int)$manufacturer_id===$manufacturer->id ? 'selected' : ''  }}>
@@ -63,7 +74,7 @@
             <div class="col-sm-10">
                 <select id="category" name="category_id" class="form-control">
 
-                    @php $category_id = old('category') ?? $product->category->id @endphp
+                    @php $category_id = old('category_id') ?? $product->category->id @endphp
 
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ (int)$category_id===$category->id ? 'selected' : ''  }}>

@@ -50,19 +50,22 @@ class ProductController extends Controller
      * @param ManufacturerRepository $manufacturerRepository
      * @param CategoryRepository $categoryRepository
      * @param DetailRepository $detailRepository
+     * @param Product $product
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(
         ManufacturerRepository $manufacturerRepository,
         CategoryRepository $categoryRepository,
-        DetailRepository $detailRepository
+        DetailRepository $detailRepository,
+        Product $product
     )
     {
         return view('product.create', [
             'manufacturers' => $manufacturerRepository->getManufacturerForForm(),
             'categories' => $categoryRepository->getCategoryForForm(),
             'details' => $detailRepository->getDetailForForm(),
+            'statuses' => $product->getStatus(),
         ]);
     }
 
@@ -113,10 +116,12 @@ class ProductController extends Controller
         Detail $detail
     )
     {
+        /** @var Product $product */
         $product = $this->product->getProduct($id);
 
         return view('product.edit', [
             'product' => $product,
+            'statuses' => $product->getStatus(),
             'manufacturers' => $manufacturerRepository->getManufacturerForForm(),
             'categories' => $categoryRepository->getCategoryForForm(),
             'details' => $detailRepository->getDetailForForm(),

@@ -1,3 +1,6 @@
+@php
+/** @var \App\Model\Product $product */
+@endphp
 @extends('base')
 
 @section('content')
@@ -12,7 +15,8 @@
     <br/>
     <div>
         <div class="row">
-            <div class="col-4"> Product name </div>
+            <div class="col-3"> Product name </div>
+            <div class="col-1"> Status </div>
             <div class="col-1"> Quantity </div>
             <div class="col-1"> Price </div>
             <div class="col-2"> Manufacturer </div>
@@ -21,15 +25,16 @@
         </div>
         @foreach($products as $product)
             <div class="row">
-                <div class="col-4">
-                    <a href="/products/{{ $product->id }}">
-                        {{ $product->name }}
-                    </a>
+                <div class="col-3">
+                    <a href="/products/{{ $product->id }}">{{ $product->name }}</a>
                 </div>
                 <div class="col-1">
+                    {{ $product->status }}
+                </div>
+                <div class="col-1 text-right">
                     {{ $product->quantity }}
                 </div>
-                <div class="col-1">
+                <div class="col-1 text-right">
                     {{ $product->price }}
                 </div>
                 <div class="col-2">
