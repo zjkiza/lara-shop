@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Detail;
 use App\Model\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
@@ -96,33 +97,55 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product $product
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @param ManufacturerRepository $manufacturerRepository
+     * @param CategoryRepository $categoryRepository
+     * @param DetailRepository $detailRepository
+     * @param Detail $detail
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Product $product)
+    public function edit(
+        int $id,
+        ManufacturerRepository $manufacturerRepository,
+        CategoryRepository $categoryRepository,
+        DetailRepository $detailRepository,
+        Detail $detail
+    )
     {
-        //
+        $product = $this->product->getProduct($id);
+        return view('product.edit', [
+            'product' => $product,
+            'manufacturers' => $manufacturerRepository->getManufacturerForForm(),
+            'categories' => $categoryRepository->getCategoryForForm(),
+            'details' => $detailRepository->getDetailForForm(),
+            'checkedIds' => $detail->getCheckedIds($product),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param int $id
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Product $product
-     * @return \Illuminate\Http\Response
+     *
+     * @return RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(int $id, Request $request): RedirectResponse
     {
-        //
+        $this->product->updateProduct($id, (new Product())->validateData(), $request->get('details'));
+
+        return redirect()->route('product.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product $product
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return void
      */
-    public function destroy(Product $product)
+    public function destroy(int $id): void
     {
         //
     }

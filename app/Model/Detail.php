@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $id
  * @property string $name
  *
+ * @property Product $products
+ *
  * @package App\Model
  */
 
@@ -24,5 +26,19 @@ class Detail extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'detail_product');
+    }
+
+    /**
+     * @param Product $product
+     * @return array
+     */
+    public function getCheckedIds(Product $product): array
+    {
+        $checkedIds = [];
+        foreach ($product->details as $detail){
+            $checkedIds[] = $detail->pivot->detail_id;
+        }
+
+        return $checkedIds;
     }
 }

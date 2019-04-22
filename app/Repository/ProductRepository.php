@@ -41,19 +41,33 @@ class ProductRepository implements IProduct
         return $this->product->with('category', 'manufacturer', 'pictures', 'details')->findOrFail($id);
     }
 
+    /**
+     * @param array $data
+     * @param array|null $pivot
+     */
     public function storeProduct(array $data, ?array $pivot): void
     {
         /** @var Product $saveProduct */
         $saveProduct = $this->product->create($data);
 
-        if ($pivot !== null) {
-            $saveProduct->details()->sync($pivot);
-        }
+        $pivotData = $pivot ?: [];
+        $saveProduct->details()->sync($pivotData);
     }
 
-    public function updateProduct(array $data, int $id): void
+    /**
+     * @param int $id
+     * @param array $data
+     * @param array|null $pivot
+     */
+    public function updateProduct(int $id, array $data, ?array $pivot): void
     {
-        // TODO: Implement updateProduc() method.
+        /** @var Product $product */
+        $product = $this->getProduct($id);
+
+        $product->update($data);
+
+        $pivotData = $pivot ?: [];
+        $product->details()->sync($pivotData);
     }
 
     public function deleteProduct(int $id): void
