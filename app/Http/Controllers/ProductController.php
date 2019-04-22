@@ -114,6 +114,7 @@ class ProductController extends Controller
     )
     {
         $product = $this->product->getProduct($id);
+
         return view('product.edit', [
             'product' => $product,
             'manufacturers' => $manufacturerRepository->getManufacturerForForm(),
@@ -143,10 +144,12 @@ class ProductController extends Controller
      *
      * @param int $id
      *
-     * @return void
+     * @return RedirectResponse
      */
-    public function destroy(int $id): void
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        $this->product->deleteProduct($id);
+
+        return redirect()->route('product.index');
     }
 }

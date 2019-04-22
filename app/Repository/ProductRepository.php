@@ -72,7 +72,8 @@ class ProductRepository implements IProduct
 
     public function deleteProduct(int $id): void
     {
-        // TODO: Implement deleteProduct() method.
+        $product = $this->getProduct($id);
+        $product->delete();
     }
 
 }
