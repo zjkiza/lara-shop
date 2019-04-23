@@ -79,5 +79,4 @@ class ProductRepository implements IProduct
         $product = $this->getProduct($id);
         $product->delete();
     }
-
 }

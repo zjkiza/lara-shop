@@ -1,5 +1,5 @@
 @php
-/** @var \App\Model\Product $product */
+    /** @var \App\Model\Product $product */
 @endphp
 @extends('base')
 
@@ -15,13 +15,13 @@
     <br/>
     <div>
         <div class="row">
-            <div class="col-3"> Product name </div>
-            <div class="col-1"> Status </div>
-            <div class="col-1"> Quantity </div>
-            <div class="col-1"> Price </div>
-            <div class="col-2"> Manufacturer </div>
-            <div class="col-2"> Category </div>
-            <div class="col-2"> Action </div>
+            <div class="col-3"> Product name</div>
+            <div class="col-1"> Status</div>
+            <div class="col-1"> Quantity</div>
+            <div class="col-1"> Price</div>
+            <div class="col-2"> Manufacturer</div>
+            <div class="col-2"> Category</div>
+            <div class="col-2"> Action</div>
         </div>
         @foreach($products as $product)
             <div class="row">
@@ -44,9 +44,12 @@
                     {{ $product->category->name }}
                 </div>
                 <div class="col-2">
-                    <button class="button"><a href="#"><span class="fa fa-file-picture-o"></span></a></button>
-                    <button class="button"><a href="{{ route('product.edit' , ['product' => $product]) }}"><span class="fa fa-pencil"></span></a></button>
-                    <form method="post" action="{{ route('product.destroy', [ 'product' => $product ]) }}" class="d-inline">
+                    <button class="button"><a href="{{ route('picture.add', ['product' => $product ]) }}">
+                            <span class="fa fa-file-picture-o"></span></a></button>
+                    <button class="button"><a href="{{ route('product.edit' , ['product' => $product]) }}">
+                            <span class="fa fa-pencil"></span></a></button>
+                    <form method="post" action="{{ route('product.destroy', ['product' => $product ]) }}"
+                            class="d-inline">
                         @method('DELETE')
                         @csrf
                         <button class="button"><span class="fa fa-trash"></span></button>

@@ -2,84 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Picture;
+use App\Model\Product;
+use App\Repository\IPicture;
+use App\Repository\IProduct;
+use App\Service\FileManager;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class PictureController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var IProduct
      */
-    public function index()
+    private $product;
+
+    /**
+     * @var IPicture
+     */
+    private $picture;
+
+    /**
+     * PictureController constructor.
+     * @param IProduct $product
+     * @param IPicture $data
+     */
+    public function __construct(IProduct $product, IPicture $data)
     {
-        //
+        $this->product = $product;
+        $this->picture = $data;
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(int $id)
     {
-        //
+        $product = $this->product->getProduct($id);
+
+        return view('picture.addPicture',[
+            'product' => $product
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @param Request $request
+     * @param FileManager $fileManager
      */
-    public function store(Request $request)
+    public function dropzone(int $id, Request $request, FileManager $fileManager): void
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Picture  $picture
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Picture $picture)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Picture  $picture
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Picture $picture)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Picture  $picture
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Picture $picture)
-    {
-        //
+        /** @var Product $product */
+        $product = $this->product->getProduct($id);
+        $file = $request->file('file');
+        $fileName = $fileManager->uploadFile($file);
+        $this->picture->storePicture($fileName, $product);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Picture  $picture
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @param int $product_id
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Picture $picture)
+    public function destroy(int $id,  int $product_id): RedirectResponse
     {
-        //
+        $this->picture->deletePicture($id);
+
+        return redirect()->route('product.show', [
+            'product' => $product_id
+        ]);
     }
 }

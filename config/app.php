@@ -179,6 +179,7 @@ return [
          * My Service Provider
          */
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\FileManagerServiceProvider::class,
 
     ],
 

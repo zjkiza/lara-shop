@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
 use App\Repository\ManufacturerRepository;
+use App\Repository\PictureRepository;
 use App\Repository\ProductRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +38,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\DetailRepository'
         );
 
+        $this->app->bind(
+            'App\Repository\IPicture',
+            'App\Repository\PictureRepository'
+        );
+
 
         $this->app->singleton(ProductRepository::class, function () {
 
@@ -47,13 +53,20 @@ class RepositoryServiceProvider extends ServiceProvider
 
             return new CategoryRepository();
         });
+
         $this->app->singleton(ManufacturerRepository::class, function () {
 
             return new ManufacturerRepository();
         });
+
         $this->app->singleton(DetailRepository::class, function () {
 
             return new DetailRepository();
+        });
+
+        $this->app->singleton(PictureRepository::class, function () {
+
+            return new PictureRepository();
         });
 
     }
