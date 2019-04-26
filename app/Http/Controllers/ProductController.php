@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Model\Detail;
 use App\Model\Product;
 use App\Repository\CategoryRepository;
@@ -69,13 +70,13 @@ class ProductController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreProductRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreProductRequest $request): RedirectResponse
     {
-        $this->product->storeProduct((new Product())->validateData(), $request->get('details'));
+        $this->product->storeProduct($request->validated(), $request->get('details'));
 
         return redirect()->route('product.index')->with('success', 'Product success add');
     }
@@ -132,13 +133,13 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param int $id
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreProductRequest $request
      *
      * @return RedirectResponse
      */
-    public function update(int $id, Request $request): RedirectResponse
+    public function update(int $id, StoreProductRequest $request): RedirectResponse
     {
-        $this->product->updateProduct($id, (new Product())->validateData(), $request->get('details'));
+        $this->product->updateProduct($id, $request->validated(), $request->get('details'));
 
         return redirect()->route('product.index')->with('success', 'Product success updated');
     }
