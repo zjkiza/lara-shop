@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    @include('layer.navmenu');
+    @include('layer.navmenu')
 
 <div class="container">
 

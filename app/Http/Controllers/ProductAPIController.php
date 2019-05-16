@@ -34,7 +34,7 @@ class ProductAPIController extends BaseApiController
         $products = $this->product->getAllProduct($request->query->get('search'));
 
         if (!$products) {
-            throw new ApiModelNotFoundException('');
+            throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
         }
 
         return $this->createApiResponse(
@@ -97,7 +97,7 @@ class ProductAPIController extends BaseApiController
         try {
             $this->product->deleteProduct($id);
         } catch (ModelNotFoundException $e) {
-            throw new ApiModelNotFoundException('');
+            throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
         }
 
         return $this->createApiResponse(204, 'Product success delete');

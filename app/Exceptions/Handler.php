@@ -4,11 +4,8 @@ namespace App\Exceptions;
 
 use App\Http\Api\StructuringExceptionDataForApi;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -18,7 +15,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+
     ];
 
     /**
@@ -27,8 +24,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
-        'password',
-        'password_confirmation',
+
     ];
 
     /**
@@ -53,7 +49,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ApiModelNotFoundException) {
 
-            return $this->createErrorApiResponse('Does not exist any data with the specified identification' , 404);
+            return $this->createErrorApiResponse($exception->getMessage() , 404);
         }
 
         if ($exception instanceof ApiAuthenticationException) {
