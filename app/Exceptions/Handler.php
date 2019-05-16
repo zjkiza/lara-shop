@@ -2,8 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Http\Api\StructuringExceptionDataForApi;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -29,8 +34,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
-     * @return void
+     * @param  \Exception $exception
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
@@ -40,12 +45,32 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
+     * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ApiModelNotFoundException) {
+
+            return $this->createErrorApiResponse('Does not exist any data with the specified identification' , 404);
+        }
+
+        if ($exception instanceof ApiAuthenticationException) {
+
+            return $this->createErrorApiResponse($exception->getMessage() , 401);
+        }
+
         return parent::render($request, $exception);
+    }
+
+    protected function createErrorApiResponse(string $message, int $code): JsonResponse
+    {
+        $structuringDataFromApi = new StructuringExceptionDataForApi(
+            $message,
+            $code
+        );
+
+        return response()->json($structuringDataFromApi->getStructuringDataForApi(), $code);
     }
 }

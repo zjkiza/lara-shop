@@ -17,11 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'PassportController@login');
-Route::post('register', 'PassportController@register');
+Route::post('login-api', 'PassportController@login');
+Route::post('register-api', 'PassportController@register');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'PassportController@details');
+    Route::get('user-api', 'PassportController@details');
 
     Route::resource('products-api', 'ProductAPIController', [
         'except' => ['create', 'edit']

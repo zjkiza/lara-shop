@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiModelNotFoundException;
 use App\Http\Requests\StoreProductRequest;
 use App\Repository\IProduct;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
 
@@ -32,12 +34,7 @@ class ProductAPIController extends BaseApiController
         $products = $this->product->getAllProduct($request->query->get('search'));
 
         if (!$products) {
-
-            return $this->createApiResponse(
-                400,
-                'Product not found',
-                false
-            );
+            throw new ApiModelNotFoundException('');
         }
 
         return $this->createApiResponse(
@@ -56,13 +53,8 @@ class ProductAPIController extends BaseApiController
     {
         try {
             $product = $this->product->getProduct($id);
-        } catch (\Exception $e) {
-
-            return $this->createApiResponse(
-                400,
-                'Product not found',
-                false
-            );
+        } catch (ModelNotFoundException $e) {
+            throw new ApiModelNotFoundException('');
         }
 
         return $this->createApiResponse(
@@ -104,13 +96,8 @@ class ProductAPIController extends BaseApiController
     {
         try {
             $this->product->deleteProduct($id);
-        } catch (\Exception $e) {
-
-            return $this->createApiResponse(
-                400,
-                'Product not found',
-                false
-            );
+        } catch (ModelNotFoundException $e) {
+            throw new ApiModelNotFoundException('');
         }
 
         return $this->createApiResponse(204, 'Product success delete');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiAuthenticationException;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -38,14 +39,14 @@ class PassportController extends RegisterController
      * @param Request $request
      * @return JsonResponse
      * @throws \Illuminate\Validation\ValidationException
+     * @throws ApiAuthenticationException
      */
     public function login(Request $request): JsonResponse
     {
         $this->validateLogin($request);
 
         if (!auth()->attempt($request->all())) {
-
-            return response()->json(['error' => 'UnAuthorised'], 401);
+            throw new ApiAuthenticationException('Unauthorised');
         }
 
         $token = auth()->user()->createToken('TutsForWeb')->accessToken;
