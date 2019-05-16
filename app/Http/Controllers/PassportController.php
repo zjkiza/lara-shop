@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\JsonResponse;
 
-class PassportController extends Controller
+class PassportController extends RegisterController
 {
+    use AuthenticatesUsers;
+
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         $this->validate($request, [
             'name' => 'required|min:3',
@@ -21,46 +26,40 @@ class PassportController extends Controller
         ]);
 
         /** @var User $user */
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'guest',
-        ]);
-
+        $user = $this->create($request->all());
         $token = $user->createToken('TutsForWeb')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json(['token' => $token]);
     }
 
     /**
      * Handles Login Request
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        $this->validateLogin($request);
 
-        if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('TutsForWeb')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
+        if (!auth()->attempt($request->all())) {
+
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
+
+        $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+
+        return response()->json(['token' => $token]);
     }
 
     /**
      * Returns Authenticated User Details
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function details()
+    public function details(): JsonResponse
     {
-        return response()->json(['user' => auth()->user()], 200);
+        return response()->json(['user' => auth()->user()]);
     }
 }

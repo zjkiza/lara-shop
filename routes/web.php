@@ -26,3 +26,6 @@ Route::patch('/products/{product}', 'ProductController@update')->name('product.u
 Route::get('/picture/create/{product}', 'PictureController@create')->name('picture.add');
 Route::post('/picture/save-pictures/{product}', 'PictureController@dropzone')->name('picture.save');
 Route::delete('/picture/{picture}/product/{product_id}', 'PictureController@destroy')->name('picture.destroy');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
