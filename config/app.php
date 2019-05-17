@@ -181,6 +181,7 @@ return [
          */
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\FileManagerServiceProvider::class,
+        App\Providers\ProductObserverProviders::class,
 
     ],
 

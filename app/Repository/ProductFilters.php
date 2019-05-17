@@ -8,6 +8,7 @@
 namespace App\Repository;
 
 use App\Service\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class ProductFilters
@@ -17,9 +18,9 @@ class ProductFilters extends QueryFilter
 {
     /**
      * @param string $status
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
-    public function status(string $status)
+    public function status(string $status): Builder
     {
         return $this->builder->where('status', $status);
     }
