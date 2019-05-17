@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kiza
+ * User: zjkiza
  * Date: 5/16/19
  * Time: 1:25 PM
  */
@@ -26,6 +25,9 @@ class StructuringExceptionDataForApi
         $this->code = $code;
     }
 
+    /**
+     * @return array
+     */
     public function getStructuringDataForApi():array
     {
         return [

@@ -29,6 +29,9 @@ class StructuringDataForApi
         $this->message = $message;
     }
 
+    /**
+     * @return array
+     */
     public function getStructuringDataForApi():array
     {
         return [

@@ -65,6 +65,11 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
+    /**
+     * @param string $message
+     * @param int $code
+     * @return JsonResponse
+     */
     protected function createErrorApiResponse(string $message, int $code): JsonResponse
     {
         $structuringDataFromApi = new StructuringExceptionDataForApi(
