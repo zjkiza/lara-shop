@@ -57,6 +57,11 @@ class Handler extends ExceptionHandler
             return $this->createErrorApiResponse($exception->getMessage() , 401);
         }
 
+        if ($exception instanceof ApiUserRegisterException) {
+
+            return $this->createErrorApiResponse($exception->getMessage() , 422);
+        }
+
         return parent::render($request, $exception);
     }
 

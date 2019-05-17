@@ -3,53 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ApiAuthenticationException;
-use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserLoginApiRequest;
+use App\Http\Requests\UserRegisterApiRequest;
+use App\Repository\IUser;
 use App\User;
 use Illuminate\Http\JsonResponse;
 
-class PassportController extends RegisterController
+class PassportController extends Controller
 {
-    use AuthenticatesUsers;
+    private const TOKEN_NAME = 'TestForWeb';
 
     /**
-     * @param Request $request
-     * @return JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * @var IUser
      */
-    public function register(Request $request): JsonResponse
-    {
-        $this->validate($request, [
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
+    private $user;
 
+    /**
+     * PassportController constructor.
+     * @param IUser $user
+     */
+    public function __construct(IUser $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @param UserRegisterApiRequest $request
+     * @return JsonResponse
+     */
+    public function register(UserRegisterApiRequest $request): JsonResponse
+    {
         /** @var User $user */
-        $user = $this->create($request->all());
-        $token = $user->createToken('TutsForWeb')->accessToken;
+        $user = $this->user->create($request);
+        $token = $user->createToken(self::TOKEN_NAME)->accessToken;
 
         return response()->json(['token' => $token]);
     }
 
     /**
-     * Handles Login Request
-     *
-     * @param Request $request
+     * @param UserLoginApiRequest $request
      * @return JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
      * @throws ApiAuthenticationException
      */
-    public function login(Request $request): JsonResponse
+    public function login(UserLoginApiRequest $request): JsonResponse
     {
-        $this->validateLogin($request);
-
         if (!auth()->attempt($request->all())) {
             throw new ApiAuthenticationException('Unauthorised');
         }
 
-        $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+        $token = auth()->user()->createToken(self::TOKEN_NAME)->accessToken;
 
         return response()->json(['token' => $token]);
     }

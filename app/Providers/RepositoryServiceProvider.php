@@ -7,6 +7,7 @@ use App\Repository\DetailRepository;
 use App\Repository\ManufacturerRepository;
 use App\Repository\PictureRepository;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -43,6 +44,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\PictureRepository'
         );
 
+        $this->app->bind(
+            'App\Repository\IUser',
+            'App\Repository\UserRepository'
+        );
+
 
         $this->app->singleton(ProductRepository::class, function () {
 
@@ -67,6 +73,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(PictureRepository::class, function () {
 
             return new PictureRepository();
+        });
+
+        $this->app->singleton(UserRepository::class, function () {
+
+            return new UserRepository();
         });
 
     }
