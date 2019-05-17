@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kiza
+ * User: zjkiza
  * Date: 5/17/19
  * Time: 11:40 AM
  */
@@ -10,8 +9,16 @@ namespace App\Repository;
 
 use App\Service\QueryFilter;
 
+/**
+ * Class ProductFilters
+ * @package App\Repository
+ */
 class ProductFilters extends QueryFilter
 {
+    /**
+     * @param string $status
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function status(string $status)
     {
         return $this->builder->where('status', $status);

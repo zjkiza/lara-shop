@@ -21,9 +21,11 @@
 
                 <form action="{{ route('product.filters') }}" method="get">
                     <select name="status" onclick="this.form.submit()">
-                        <option value="new">New</option>
-                        <option value="old">Old</option>
-                        <option value="sale">Sale</option>
+                        @foreach((new \App\Model\Product())->getStatus() as $status)
+
+                            <option value="{{ $status }}">{{ $status }}</option>
+
+                        @endforeach
                     </select>
                 </form>
 

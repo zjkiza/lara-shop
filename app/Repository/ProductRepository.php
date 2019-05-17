@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kiza
+ * User: zjkiza
  * Date: 4/21/19
  * Time: 1:44 PM
  */
@@ -25,9 +24,13 @@ class ProductRepository implements IProduct
         $this->product = (new Product())->newQuery();
     }
 
+    /**
+     * @param null|string $inputSearch
+     * @return LengthAwarePaginator
+     */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
     {
-        $products = $this->product->with('details', 'manufacturer');
+        $products = $this->product;
 
         if ($inputSearch !== null) {
             $products->where('name', 'like', '%' . $inputSearch . '%');
@@ -36,9 +39,13 @@ class ProductRepository implements IProduct
         return $products->paginate(10);
     }
 
+    /**
+     * @param int $id
+     * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
     public function getProduct(int $id)
     {
-        return $this->product->with('category', 'manufacturer', 'pictures', 'details')->findOrFail($id);
+        return $this->product->findOrFail($id);
     }
 
     /**

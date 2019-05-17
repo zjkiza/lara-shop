@@ -27,6 +27,8 @@ class Product extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['category', 'manufacturer', 'pictures', 'details'];
+
     /**
      * @return BelongsTo
      */
@@ -75,7 +77,7 @@ class Product extends Model
      * @param QueryFilter $queryFilter
      * @return Builder
      */
-    public function filter(QueryFilter $queryFilter)
+    public function filter(QueryFilter $queryFilter): Builder
     {
         return $queryFilter->apply($this->newQuery());
     }
