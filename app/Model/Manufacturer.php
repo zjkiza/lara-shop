@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Class Manufacturer
  *
  * @property int $id
- * @property string $name
+ * @property string $manufacturer_name
  *
  * @package App
  */

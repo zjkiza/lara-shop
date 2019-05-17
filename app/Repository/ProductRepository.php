@@ -36,6 +36,8 @@ class ProductRepository implements IProduct
             $products->where('name', 'like', '%' . $inputSearch . '%');
         }
 
+        $products = (new Product())->joinTables($products);
+
         return $products->paginate(10);
     }
 
@@ -45,7 +47,7 @@ class ProductRepository implements IProduct
      */
     public function getProduct(int $id)
     {
-        return $this->product->findOrFail($id);
+        return $this->product->with('category', 'manufacturer', 'pictures', 'details')->findOrFail($id);
     }
 
     /**

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Class Category
  *
  * @property int $id
- * @property string $name
+ * @property string $category_name
  *
  * @package App\Model
  */

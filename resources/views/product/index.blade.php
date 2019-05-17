@@ -51,10 +51,10 @@
                     {{ $product->price }}
                 </div>
                 <div class="col-2">
-                    {{ $product->manufacturer->name }}
+                    {{ $product->manufacturer_name }}
                 </div>
                 <div class="col-2">
-                    {{ $product->category->name }}
+                    {{ $product->category_name }}
                 </div>
                 <div class="col-2">
                     <button class="button"><a href="{{ route('picture.add', ['product' => $product ]) }}">

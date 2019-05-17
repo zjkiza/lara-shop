@@ -18,5 +18,6 @@ Use of Larval components through the example "CMS for e-commerce"
     - repository pattern
     - handler for Eloquent events
     - error handling for API
+- optimisation eloquent query    
 
 

@@ -56,7 +56,7 @@
                 <select id="manufacturer" name="manufacturer_id" class="form-control">
                     @foreach($manufacturers as $manufacturer)
                         <option value="{{ $manufacturer->id }}" {{ (int)old('manufacturer_id')===$manufacturer->id ? 'selected' : ''  }}>
-                            {{ $manufacturer->name }}
+                            {{ $manufacturer->manufacturer_name }}
                         </option>
                     @endforeach
                 </select>
@@ -68,7 +68,7 @@
                 <select id="category" name="category_id" class="form-control">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ (int)old('category_id')===$category->id ? 'selected' : ''  }}>
-                            {{ $category->name }}
+                            {{ $category->category_name }}
                         </option>
                     @endforeach
                 </select>

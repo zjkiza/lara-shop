@@ -24,4 +24,13 @@ class ProductFilters extends QueryFilter
     {
         return $this->builder->where('status', $status);
     }
+
+    /**
+     * @param string $order
+     * @return Builder
+     */
+    public function manufacturer(string $order = 'asc'): Builder
+    {
+        return $this->builder->orderBy('manufacturer_name', $order);
+    }
 }

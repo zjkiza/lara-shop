@@ -27,8 +27,6 @@ class Product extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['category', 'manufacturer', 'pictures', 'details'];
-
     /**
      * @return BelongsTo
      */
@@ -79,6 +77,19 @@ class Product extends Model
      */
     public function filter(QueryFilter $queryFilter): Builder
     {
-        return $queryFilter->apply($this->newQuery());
+        return $queryFilter->apply($this->joinTables($this->newQuery()));
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function joinTables(Builder $builder): Builder
+    {
+        return $builder
+            ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'manufacturers.manufacturer_name', 'categories.category_name')
+        ;
     }
 }
