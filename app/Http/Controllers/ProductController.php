@@ -9,6 +9,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
 use App\Repository\IProduct;
 use App\Repository\ManufacturerRepository;
+use App\Repository\ProductFilters;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
@@ -156,5 +157,19 @@ class ProductController extends Controller
         $this->product->deleteProduct($id);
 
         return redirect()->route('product.index')->with('success', 'Product success deleted');
+    }
+
+    /**
+     * @param ProductFilters $filters
+     * @param Product $product
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function filters(ProductFilters $filters, Product $product)
+    {
+        $products = $product->filter($filters)->paginate(10);
+
+        return view('product.index', [
+            'products' => $products
+        ]);
     }
 }

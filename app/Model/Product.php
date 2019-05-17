@@ -2,10 +2,12 @@
 
 namespace App\Model;
 
+use App\Service\QueryFilter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Product
@@ -67,5 +69,14 @@ class Product extends Model
             'sale',
             'old',
         ];
+    }
+
+    /**
+     * @param QueryFilter $queryFilter
+     * @return Builder
+     */
+    public function filter(QueryFilter $queryFilter)
+    {
+        return $queryFilter->apply($this->newQuery());
     }
 }

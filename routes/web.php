@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products/filters', 'ProductController@filters')->name('product.filters');
 Route::get('/products', 'ProductController@index')->name('product.index');
 Route::get('/products/create', 'ProductController@create')->name('product.create');
 Route::get('/products/{product}', 'ProductController@show')->name('product.show');

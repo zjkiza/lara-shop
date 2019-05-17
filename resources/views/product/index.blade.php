@@ -16,7 +16,18 @@
     <div>
         <div class="row">
             <div class="col-3"> Product name</div>
-            <div class="col-1"> Status</div>
+            <div class="col-1">
+                Status
+
+                <form action="{{ route('product.filters') }}" method="get">
+                    <select name="status" onclick="this.form.submit()">
+                        <option value="new">New</option>
+                        <option value="old">Old</option>
+                        <option value="sale">Sale</option>
+                    </select>
+                </form>
+
+            </div>
             <div class="col-1"> Quantity</div>
             <div class="col-1"> Price</div>
             <div class="col-2"> Manufacturer</div>
