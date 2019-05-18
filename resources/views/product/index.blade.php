@@ -15,12 +15,16 @@
     <br/>
     <div>
         <div class="row">
-            <div class="col-3"> Product name</div>
+            <div class="col-3">
+                Product name
+                <a href="{{ route('product.filters').'?name=asc' }}"><span class="fa fa-arrow-up"></span></a>
+                <a href="{{ route('product.filters').'?name=desc' }}"><span class="fa fa-arrow-down"></span></a>
+            </div>
             <div class="col-1">
                 Status
 
                 <form action="{{ route('product.filters') }}" method="get">
-                    <select name="status" onclick="this.form.submit()">
+                    <select name="status" onclick="this.form.submit()" title="filter-status">
                         @foreach((new \App\Model\Product())->getStatus() as $status)
 
                             <option value="{{ $status }}">{{ $status }}</option>
@@ -32,8 +36,16 @@
             </div>
             <div class="col-1"> Quantity</div>
             <div class="col-1"> Price</div>
-            <div class="col-2"> Manufacturer</div>
-            <div class="col-2"> Category</div>
+            <div class="col-2">
+                Manufacturer
+                <a href="{{ route('product.filters').'?manufacturer=asc' }}"><span class="fa fa-arrow-up"></span></a>
+                <a href="{{ route('product.filters').'?manufacturer=desc' }}"><span class="fa fa-arrow-down"></span></a>
+            </div>
+            <div class="col-2">
+                Category
+                <a href="{{ route('product.filters').'?category=asc' }}"><span class="fa fa-arrow-up"></span></a>
+                <a href="{{ route('product.filters').'?category=desc' }}"><span class="fa fa-arrow-down"></span></a>
+            </div>
             <div class="col-2"> Action</div>
         </div>
         @foreach($products as $product)

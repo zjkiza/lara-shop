@@ -33,4 +33,22 @@ class ProductFilters extends QueryFilter
     {
         return $this->builder->orderBy('manufacturer_name', $order);
     }
+
+    /**
+     * @param string $order
+     * @return Builder
+     */
+    public function name(string $order = 'asc'): Builder
+    {
+        return $this->builder->orderBy('name', $order);
+    }
+
+    /**
+     * @param string $order
+     * @return Builder
+     */
+    public function category(string $order = 'asc'): Builder
+    {
+        return $this->builder->orderBy('category_name', $order);
+    }
 }

@@ -10,6 +10,7 @@ Use of Larval components through the example "CMS for e-commerce"
 - create 
     - find products
     - filter for products
+    - sorting as per : product, manufacturer and category
     - service file manager
 - using 
     - flash messages
