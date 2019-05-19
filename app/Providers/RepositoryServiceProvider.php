@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Cache\ProductCache;
 use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
 use App\Repository\ManufacturerRepository;
@@ -49,10 +50,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\UserRepository'
         );
 
-
         $this->app->singleton(ProductRepository::class, function () {
 
-            return new ProductRepository();
+            return new ProductCache(new ProductRepository());
         });
 
         $this->app->singleton(CategoryRepository::class, function () {
@@ -79,7 +79,6 @@ class RepositoryServiceProvider extends ServiceProvider
 
             return new UserRepository();
         });
-
     }
 
     /**
