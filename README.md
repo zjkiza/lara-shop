@@ -16,11 +16,9 @@ Use of Larval components through the example "CMS for e-commerce"
     - flash messages
     - validation form requests
     - pagination
-    - repository pattern
+    - Repository pattern
     - handler for Eloquent events
     - error handling for API
     - Redis cache
-    - decoration pattern
+    - Decoration pattern
 - optimisation eloquent queries    
-
-
