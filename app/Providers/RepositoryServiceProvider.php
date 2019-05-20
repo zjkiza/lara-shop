@@ -5,6 +5,12 @@ namespace App\Providers;
 use App\Cache\ProductCache;
 use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
+use App\Repository\ICategory;
+use App\Repository\IDetail;
+use App\Repository\IManufacturer;
+use App\Repository\IPicture;
+use App\Repository\IProduct;
+use App\Repository\IUser;
 use App\Repository\ManufacturerRepository;
 use App\Repository\PictureRepository;
 use App\Repository\ProductRepository;
@@ -18,67 +24,37 @@ class RepositoryServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->bind(
-            'App\Repository\IProduct',
-            'App\Repository\ProductRepository'
-        );
-
-        $this->app->bind(
-            'App\Repository\IManufacturer',
-            'App\Repository\ManufacturerRepository'
-        );
-
-        $this->app->bind(
-            'App\Repository\ICategory',
-            'App\Repository\CategoryRepository'
-        );
-
-        $this->app->bind(
-            'App\Repository\IDetail',
-            'App\Repository\DetailRepository'
-        );
-
-        $this->app->bind(
-            'App\Repository\IPicture',
-            'App\Repository\PictureRepository'
-        );
-
-        $this->app->bind(
-            'App\Repository\IUser',
-            'App\Repository\UserRepository'
-        );
-
-        $this->app->singleton(ProductRepository::class, function () {
+        $this->app->bind(IProduct::class, function () {
 
             return new ProductCache(new ProductRepository());
         });
 
-        $this->app->singleton(CategoryRepository::class, function () {
+        $this->app->bind(
+            IManufacturer::class,
+            ManufacturerRepository::class
+        );
 
-            return new CategoryRepository();
-        });
+        $this->app->bind(
+            ICategory::class,
+            CategoryRepository::class
+        );
 
-        $this->app->singleton(ManufacturerRepository::class, function () {
+        $this->app->bind(
+            IDetail::class,
+            DetailRepository::class
+        );
 
-            return new ManufacturerRepository();
-        });
+        $this->app->bind(
+            IPicture::class,
+            PictureRepository::class
+        );
 
-        $this->app->singleton(DetailRepository::class, function () {
-
-            return new DetailRepository();
-        });
-
-        $this->app->singleton(PictureRepository::class, function () {
-
-            return new PictureRepository();
-        });
-
-        $this->app->singleton(UserRepository::class, function () {
-
-            return new UserRepository();
-        });
+        $this->app->bind(
+            IUser::class,
+            UserRepository::class
+        );
     }
 
     /**
@@ -86,7 +62,7 @@ class RepositoryServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

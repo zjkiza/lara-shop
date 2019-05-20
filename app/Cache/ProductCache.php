@@ -11,8 +11,11 @@ use App\Repository\IProduct;
 use App\Repository\ProductRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ProductCache implements IProduct
+class ProductCache extends CacheSet implements IProduct
 {
+    private const PRODUCT = 'product';
+    private const PRODUCTS = 'products.all';
+
     /** @var ProductRepository */
     private $product;
 
@@ -34,9 +37,12 @@ class ProductCache implements IProduct
         $page = request()->input('page') ?? 'zero';
         $inputSearch = $inputSearch ?? '';
 
-        return \Cache::remember("product1.all.{$page}.{$inputSearch}", 60*60, function () use ($inputSearch) {
+        return $this->remember(
+            sprintf('%s.%s.%s', self::PRODUCTS, $page, $inputSearch),
+            $this::CACHE_TIMES_5,
+            function () use ($inputSearch) {
 
-            return $this->product->getAllProduct($inputSearch);
+                return $this->product->getAllProduct($inputSearch);
         });
     }
 
@@ -46,9 +52,12 @@ class ProductCache implements IProduct
      */
     public function getProduct(int $id)
     {
-        return \Cache::remember("product.{$id}", 60*60, function () use ($id) {
+        return $this->remember(
+            sprintf('%s.%s', self::PRODUCT, $id),
+            $this::CACHE_TIMES_1,
+            function () use ($id) {
 
-            return $this->product->getProduct($id);
+                return $this->product->getProduct($id);
         });
     }
 

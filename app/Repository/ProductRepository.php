@@ -38,7 +38,7 @@ class ProductRepository implements IProduct
 
         $products = (new Product())->joinTables($products);
 
-        return $products->paginate(10);
+        return $products->paginate();
     }
 
     /**
