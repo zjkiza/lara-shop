@@ -34,16 +34,16 @@ class ProductCache extends CacheSet implements IProduct
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
     {
-        $page = request()->input('page') ?? 'zero';
+        $page = request()->input('page') ?? '0';
         $inputSearch = $inputSearch ?? '';
 
         return $this->remember(
-            sprintf('%s.%s.%s', self::PRODUCTS, $page, $inputSearch),
-            $this::CACHE_TIMES_5,
+            $this->getKeyForPage(self::PRODUCTS, $page, $inputSearch),
+            $this::CACHE_TIME_PAGE,
             function () use ($inputSearch) {
 
                 return $this->product->getAllProduct($inputSearch);
-        });
+            });
     }
 
     /**
@@ -53,12 +53,12 @@ class ProductCache extends CacheSet implements IProduct
     public function getProduct(int $id)
     {
         return $this->remember(
-            sprintf('%s.%s', self::PRODUCT, $id),
-            $this::CACHE_TIMES_1,
+            $this->getKey(self::PRODUCT, $id),
+            $this::CACHE_TIME_ELEMENT,
             function () use ($id) {
 
                 return $this->product->getProduct($id);
-        });
+            });
     }
 
     /**
@@ -78,6 +78,7 @@ class ProductCache extends CacheSet implements IProduct
     public function updateProduct(int $id, array $data, ?array $pivot): void
     {
         $this->product->updateProduct($id, $data, $pivot);
+        $this->deleteFromCache(self::PRODUCT, self::PRODUCTS, 'id', $id);
     }
 
     /**
@@ -87,5 +88,6 @@ class ProductCache extends CacheSet implements IProduct
     public function deleteProduct(int $id): void
     {
         $this->product->deleteProduct($id);
+        $this->deleteFromCache(self::PRODUCT, self::PRODUCTS, 'id', $id);
     }
 }
