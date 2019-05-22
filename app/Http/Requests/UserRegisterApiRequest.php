@@ -3,11 +3,14 @@
 namespace App\Http\Requests;
 
 use App\Exceptions\ApiUserRegisterException;
+use App\Service\ValidationErrorMessage;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegisterApiRequest extends FormRequest
 {
+    use ValidationErrorMessage;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -37,25 +40,8 @@ class UserRegisterApiRequest extends FormRequest
         $validator->after(function (Validator $validator) {
             $error = $validator->errors()->getMessages();
             if ($error) {
-                throw new ApiUserRegisterException(
-                    sprintf('Required parameter missing : %s', $this->getParameter($error))
-                );
+                throw new ApiUserRegisterException($this->getValidationErrorMessage($error));
             }
         });
-    }
-
-    /**
-     * @param array $requestParameters
-     * @return string
-     */
-    private function getParameter(array $requestParameters): string
-    {
-        $parameters = '';
-
-        foreach (array_keys($requestParameters) as $requestParameter) {
-            $parameters .= $requestParameter . ', ';
-        }
-
-        return $parameters;
     }
 }

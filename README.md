@@ -21,4 +21,5 @@ Use of Larval components through the example "CMS for e-commerce"
     - error handling for API
     - Redis cache
     - Decoration pattern
+    - Events and listeners
 - optimisation eloquent queries    

@@ -8,6 +8,7 @@
 namespace App\Repository;
 
 
+use App\Events\UserRegistered;
 use App\Http\Requests\UserRegisterApiRequest;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -18,11 +19,15 @@ class UserRepository implements IUser
     {
         $request->validated();
 
-        return User::create([
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'role' => 'guest',
         ]);
+
+        event(new UserRegistered($user));
+
+        return $user;
     }
 }
