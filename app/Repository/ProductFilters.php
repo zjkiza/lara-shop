@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/17/19
- * Time: 11:40 AM
+ * Time: 11:40 AM.
  */
 
 namespace App\Repository;
@@ -11,14 +11,13 @@ use App\Service\QueryFilter;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class ProductFilters
- *
- * @package App\Repository
+ * Class ProductFilters.
  */
 class ProductFilters extends QueryFilter
 {
     /**
      * @param string $status
+     *
      * @return Builder
      */
     public function status(string $status): Builder
@@ -28,6 +27,7 @@ class ProductFilters extends QueryFilter
 
     /**
      * @param string $order
+     *
      * @return Builder
      */
     public function manufacturer(string $order = 'asc'): Builder
@@ -37,6 +37,7 @@ class ProductFilters extends QueryFilter
 
     /**
      * @param string $order
+     *
      * @return Builder
      */
     public function name(string $order = 'asc'): Builder
@@ -46,6 +47,7 @@ class ProductFilters extends QueryFilter
 
     /**
      * @param string $order
+     *
      * @return Builder
      */
     public function category(string $order = 'asc'): Builder

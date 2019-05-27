@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/15/19
- * Time: 8:14 PM
+ * Time: 8:14 PM.
  */
 
 namespace App\Http\Controllers;
@@ -14,9 +14,10 @@ class BaseApiController extends Controller
 {
     /**
      * @param $data
-     * @param bool $success
+     * @param bool   $success
      * @param string $message
-     * @param int $statusCode
+     * @param int    $statusCode
+     *
      * @return JsonResponse
      */
     protected function createApiResponse(
@@ -24,8 +25,7 @@ class BaseApiController extends Controller
         string $message,
         bool $success = true,
         $data = null
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $structuringDataFromApi = new StructuringDataForApi(
             $success,
             $data,

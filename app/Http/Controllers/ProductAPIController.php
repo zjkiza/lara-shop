@@ -6,8 +6,8 @@ use App\Exceptions\ApiModelNotFoundException;
 use App\Http\Requests\StoreProductRequest;
 use App\Repository\IProduct;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProductAPIController extends BaseApiController
 {
@@ -18,6 +18,7 @@ class ProductAPIController extends BaseApiController
 
     /**
      * ProductController constructor.
+     *
      * @param IProduct $product
      */
     public function __construct(IProduct $product)
@@ -27,14 +28,14 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
         $products = $this->product->getAllProduct($request->query->get('search'));
 
-        if (!$products) {
-
+        if (! $products) {
             throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
         }
 
@@ -48,6 +49,7 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param int $id
+     *
      * @return JsonResponse
      */
     public function show(int $id): JsonResponse
@@ -68,6 +70,7 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param StoreProductRequest $request
+     *
      * @return JsonResponse
      */
     public function store(StoreProductRequest $request): JsonResponse
@@ -78,8 +81,9 @@ class ProductAPIController extends BaseApiController
     }
 
     /**
-     * @param int $id
+     * @param int                 $id
      * @param StoreProductRequest $request
+     *
      * @return JsonResponse
      */
     public function update(int $id, StoreProductRequest $request): JsonResponse
@@ -91,6 +95,7 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param int $id
+     *
      * @return JsonResponse
      */
     public function destroy(int $id): JsonResponse

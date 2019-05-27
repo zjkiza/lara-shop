@@ -14,7 +14,6 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -24,62 +23,61 @@ class ManufacturerController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Manufacturer  $manufacturer
+     * @param \App\Model\Manufacturer $manufacturer
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Manufacturer $manufacturer)
     {
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Manufacturer  $manufacturer
+     * @param \App\Model\Manufacturer $manufacturer
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Manufacturer $manufacturer)
     {
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Manufacturer  $manufacturer
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Model\Manufacturer  $manufacturer
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Manufacturer $manufacturer)
     {
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Manufacturer  $manufacturer
+     * @param \App\Model\Manufacturer $manufacturer
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Manufacturer $manufacturer)
     {
-
     }
 }

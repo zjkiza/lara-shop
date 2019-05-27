@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/19/19
- * Time: 6:18 PM
+ * Time: 6:18 PM.
  */
 
 namespace App\Cache;
@@ -21,6 +21,7 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * ProductCache constructor.
+     *
      * @param IProduct $product
      */
     public function __construct(IProduct $product)
@@ -30,6 +31,7 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * @param string|null $inputSearch
+     *
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
@@ -41,13 +43,13 @@ class ProductCache extends CacheSet implements IProduct
             $this->getKeyForPage(self::PRODUCTS, $page, $inputSearch),
             $this::CACHE_TIME_PAGE,
             function () use ($inputSearch) {
-
                 return $this->product->getAllProduct($inputSearch);
             });
     }
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function getProduct(int $id)
@@ -56,13 +58,12 @@ class ProductCache extends CacheSet implements IProduct
             $this->getKey(self::PRODUCT, $id),
             $this::CACHE_TIME_ELEMENT,
             function () use ($id) {
-
                 return $this->product->getProduct($id);
             });
     }
 
     /**
-     * @param array $data
+     * @param array      $data
      * @param array|null $pivot
      */
     public function storeProduct(array $data, ?array $pivot): void
@@ -71,8 +72,8 @@ class ProductCache extends CacheSet implements IProduct
     }
 
     /**
-     * @param int $id
-     * @param array $data
+     * @param int        $id
+     * @param array      $data
      * @param array|null $pivot
      */
     public function updateProduct(int $id, array $data, ?array $pivot): void
@@ -83,6 +84,7 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * @param int $id
+     *
      * @throws \Exception
      */
     public function deleteProduct(int $id): void

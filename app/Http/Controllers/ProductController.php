@@ -10,8 +10,8 @@ use App\Repository\DetailRepository;
 use App\Repository\IProduct;
 use App\Repository\ManufacturerRepository;
 use App\Repository\ProductFilters;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -22,6 +22,7 @@ class ProductController extends Controller
 
     /**
      * ProductController constructor.
+     *
      * @param IProduct $product
      */
     public function __construct(IProduct $product)
@@ -41,7 +42,7 @@ class ProductController extends Controller
         $products = $this->product->getAllProduct($request->query->get('search'));
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -49,9 +50,9 @@ class ProductController extends Controller
      * Show the form for creating a new resource.
      *
      * @param ManufacturerRepository $manufacturerRepository
-     * @param CategoryRepository $categoryRepository
-     * @param DetailRepository $detailRepository
-     * @param Product $product
+     * @param CategoryRepository     $categoryRepository
+     * @param DetailRepository       $detailRepository
+     * @param Product                $product
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -60,8 +61,7 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         DetailRepository $detailRepository,
         Product $product
-    )
-    {
+    ) {
         return view('product.create', [
             'manufacturers' => $manufacturerRepository->getManufacturerForForm(),
             'categories' => $categoryRepository->getCategoryForForm(),
@@ -101,11 +101,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param int                    $id
      * @param ManufacturerRepository $manufacturerRepository
-     * @param CategoryRepository $categoryRepository
-     * @param DetailRepository $detailRepository
-     * @param Detail $detail
+     * @param CategoryRepository     $categoryRepository
+     * @param DetailRepository       $detailRepository
+     * @param Detail                 $detail
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -115,8 +115,7 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         DetailRepository $detailRepository,
         Detail $detail
-    )
-    {
+    ) {
         /** @var Product $product */
         $product = $this->product->getProduct($id);
 
@@ -133,7 +132,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id
+     * @param int                 $id
      * @param StoreProductRequest $request
      *
      * @return RedirectResponse
@@ -165,7 +164,8 @@ class ProductController extends Controller
 
     /**
      * @param ProductFilters $filters
-     * @param Product $product
+     * @param Product        $product
+     *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function filters(ProductFilters $filters, Product $product)

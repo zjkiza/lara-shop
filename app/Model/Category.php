@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Category
+ * Class Category.
  *
- * @property int $id
+ * @property int    $id
  * @property string $category_name
- *
- * @package App\Model
  */
 class Category extends Model
 {

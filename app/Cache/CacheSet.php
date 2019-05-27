@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/20/19
- * Time: 10:31 AM
+ * Time: 10:31 AM.
  */
 
 namespace App\Cache;
@@ -16,7 +16,8 @@ class CacheSet
 
     /**
      * @param string $name
-     * @param int $id
+     * @param int    $id
+     *
      * @return string
      */
     protected function getKey(string $name, int $id): string
@@ -26,8 +27,9 @@ class CacheSet
 
     /**
      * @param string $name
-     * @param int $page
+     * @param int    $page
      * @param string $inputSearch
+     *
      * @return string
      */
     protected function getKeyForPage(string $name, int $page, string $inputSearch): string
@@ -39,6 +41,7 @@ class CacheSet
      * @param $key
      * @param $minutes
      * @param $callback
+     *
      * @return mixed
      */
     protected function remember(string $key, int $minutes, callable $callback)
@@ -46,7 +49,6 @@ class CacheSet
         $values = Redis::get($key);
 
         if ($values) {
-
             return unserialize($values);
         }
 
@@ -59,7 +61,7 @@ class CacheSet
      * @param string $keyName
      * @param string $keysName
      * @param string $idName
-     * @param int $idValue
+     * @param int    $idValue
      */
     protected function deleteFromCache(string $keyName, string $keysName, string $idName, int $idValue): void
     {
@@ -71,7 +73,6 @@ class CacheSet
     }
 
     /**
-     *
      * @param string $keysName
      * @param string $idName
      * @param $idValue

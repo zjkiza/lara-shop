@@ -3,24 +3,23 @@
 namespace App\Model;
 
 use App\Service\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class Product
+ * Class Product.
  *
- * @property int $id
+ * @property int    $id
  * @property string $name
  * @property string $description
- * @property int $quantity
+ * @property int    $quantity
  * @property string $status
- * @property double $price
- * @property int $category_id
- * @property int $manufacturer_id
- * @package App\Model
+ * @property float  $price
+ * @property int    $category_id
+ * @property int    $manufacturer_id
  */
 class Product extends Model
 {
@@ -72,6 +71,7 @@ class Product extends Model
 
     /**
      * @param QueryFilter $queryFilter
+     *
      * @return Builder
      */
     public function filter(QueryFilter $queryFilter): Builder
@@ -81,6 +81,7 @@ class Product extends Model
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function joinTables(Builder $builder): Builder

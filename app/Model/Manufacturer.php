@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Manufacturer
+ * Class Manufacturer.
  *
- * @property int $id
+ * @property int    $id
  * @property string $manufacturer_name
- *
- * @package App
  */
 class Manufacturer extends Model
 {

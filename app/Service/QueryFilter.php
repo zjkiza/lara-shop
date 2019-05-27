@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/17/19
- * Time: 11:37 AM
+ * Time: 11:37 AM.
  */
 
 namespace App\Service;
@@ -38,6 +38,7 @@ abstract class QueryFilter
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function apply(Builder $builder): Builder

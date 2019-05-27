@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Class Detail
+ * Class Detail.
  *
- * @property int $id
- * @property string $name
- *
+ * @property int     $id
+ * @property string  $name
  * @property Product $products
- *
- * @package App\Model
  */
-
 class Detail extends Model
 {
     protected $guarded = [];
@@ -30,12 +26,13 @@ class Detail extends Model
 
     /**
      * @param Product $product
+     *
      * @return array
      */
     public function getCheckedIds(Product $product): array
     {
         $checkedIds = [];
-        foreach ($product->details as $detail){
+        foreach ($product->details as $detail) {
             $checkedIds[] = $detail->pivot->detail_id;
         }
 

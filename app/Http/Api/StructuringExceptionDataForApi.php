@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/16/19
- * Time: 1:25 PM
+ * Time: 1:25 PM.
  */
 
 namespace App\Http\Api;

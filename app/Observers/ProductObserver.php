@@ -9,13 +9,11 @@ class ProductObserver
     /**
      * Handle the product "updated" event.
      *
-     * @param  Product $product
-     * @return void
+     * @param Product $product
      */
     public function updated(Product $product): void
     {
-        if ((int)$product->quantity === 0 && $product->status !== 'old') {
-
+        if (0 === (int) $product->quantity && 'old' !== $product->status) {
             $product->status = 'old';
             $product->save();
         }

@@ -6,8 +6,8 @@ use App\Model\Product;
 use App\Repository\IPicture;
 use App\Repository\IProduct;
 use App\Service\FileManager;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class PictureController extends Controller
 {
@@ -23,6 +23,7 @@ class PictureController extends Controller
 
     /**
      * PictureController constructor.
+     *
      * @param IProduct $product
      * @param IPicture $data
      */
@@ -44,13 +45,13 @@ class PictureController extends Controller
         $product = $this->product->getProduct($id);
 
         return view('picture.addPicture', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
     /**
-     * @param int $id
-     * @param Request $request
+     * @param int         $id
+     * @param Request     $request
      * @param FileManager $fileManager
      */
     public function dropzone(int $id, Request $request, FileManager $fileManager): void

@@ -2,14 +2,14 @@
 /**
  * User: zjkiza
  * Date: 4/21/19
- * Time: 1:44 PM
+ * Time: 1:44 PM.
  */
 
 namespace App\Repository;
 
 use App\Model\Product;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductRepository implements IProduct
 {
@@ -26,14 +26,15 @@ class ProductRepository implements IProduct
 
     /**
      * @param string|null $inputSearch
+     *
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
     {
         $products = $this->product;
 
-        if ($inputSearch !== null) {
-            $products->where('name', 'like', '%' . $inputSearch . '%');
+        if (null !== $inputSearch) {
+            $products->where('name', 'like', '%'.$inputSearch.'%');
         }
 
         $products = (new Product())->joinTables($products);
@@ -43,6 +44,7 @@ class ProductRepository implements IProduct
 
     /**
      * @param int $id
+     *
      * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function getProduct(int $id)
@@ -54,7 +56,7 @@ class ProductRepository implements IProduct
     }
 
     /**
-     * @param array $data
+     * @param array      $data
      * @param array|null $pivot
      */
     public function storeProduct(array $data, ?array $pivot): void
@@ -67,8 +69,8 @@ class ProductRepository implements IProduct
     }
 
     /**
-     * @param int $id
-     * @param array $data
+     * @param int        $id
+     * @param array      $data
      * @param array|null $pivot
      */
     public function updateProduct(int $id, array $data, ?array $pivot): void
@@ -84,6 +86,7 @@ class ProductRepository implements IProduct
 
     /**
      * @param int $id
+     *
      * @throws \Exception
      */
     public function deleteProduct(int $id): void

@@ -21,13 +21,10 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {
         $this->app->bind(IProduct::class, function () {
-
             return new ProductCache(new ProductRepository());
         });
 
@@ -59,11 +56,8 @@ class RepositoryServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
     public function boot(): void
     {
-
     }
 }

@@ -2,14 +2,14 @@
 /**
  * User: zjkiza
  * Date: 4/22/19
- * Time: 9:23 AM
+ * Time: 9:23 AM.
  */
 
 namespace App\Repository;
 
 use App\Model\Category;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class CategoryRepository implements ICategory
 {
@@ -53,5 +53,4 @@ class CategoryRepository implements ICategory
     {
         // TODO: Implement deleteCategory() method.
     }
-
 }

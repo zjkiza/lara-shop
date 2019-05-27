@@ -2,13 +2,13 @@
 /**
  * User: zjkiza
  * Date: 4/23
- * Time: 09:0 AM
+ * Time: 09:0 AM.
  */
 
 namespace App\Service;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Http\UploadedFile;
 
 class FileManager
 {
@@ -26,6 +26,7 @@ class FileManager
 
     /**
      * @param UploadedFile $file
+     *
      * @return string
      */
     public function uploadFile(UploadedFile $file): string
@@ -39,6 +40,7 @@ class FileManager
 
     /**
      * @param $file
+     *
      * @return bool
      */
     public function removeFile($file): bool
@@ -49,6 +51,6 @@ class FileManager
 
         $filesystem->delete($path);
 
-        return !$filesystem->exists($path);
+        return ! $filesystem->exists($path);
     }
 }

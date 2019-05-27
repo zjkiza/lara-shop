@@ -2,7 +2,7 @@
 /**
  * User: zjkiza
  * Date: 5/15/19
- * Time: 8:03 PM
+ * Time: 8:03 PM.
  */
 
 namespace App\Http\Api;
@@ -32,7 +32,7 @@ class StructuringDataForApi
     /**
      * @return array
      */
-    public function getStructuringDataForApi():array
+    public function getStructuringDataForApi(): array
     {
         return [
             'success' => $this->success,

@@ -39,7 +39,7 @@ class UserRegisterApiRequest extends FormRequest
             $error = $validator->errors()->getMessages();
             if ($error) {
                 throw new ApiUserRegisterException(
-                    (new ValidationErrorMessage)->getValidationErrorMessage($error)
+                    (new ValidationErrorMessage())->getValidationErrorMessage($error)
                 );
             }
         });

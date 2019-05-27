@@ -2,15 +2,15 @@
 /**
  * User: zjkiza
  * Date: 4/23/19
- * Time: 10:08 AM
+ * Time: 10:08 AM.
  */
 
 namespace App\Repository;
 
 use App\Model\Picture;
 use App\Model\Product;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class PictureRepository implements IPicture
 {
@@ -37,6 +37,7 @@ class PictureRepository implements IPicture
 
     /**
      * @param int $id
+     *
      * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function getPicture(int $id)
@@ -46,6 +47,7 @@ class PictureRepository implements IPicture
 
     /**
      * @param int $id
+     *
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getPicturesForProduct(int $id)
@@ -54,7 +56,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param string $pictureName
+     * @param string  $pictureName
      * @param Product $product
      */
     public function storePicture(string $pictureName, Product $product): void
@@ -67,6 +69,7 @@ class PictureRepository implements IPicture
 
     /**
      * @param int $id
+     *
      * @throws \Exception
      */
     public function deletePicture(int $id): void
@@ -77,6 +80,7 @@ class PictureRepository implements IPicture
 
     /**
      * @param int $id
+     *
      * @return int|mixed
      */
     private function getPriorityForPicture(int $id)

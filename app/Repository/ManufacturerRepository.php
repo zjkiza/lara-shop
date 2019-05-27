@@ -2,14 +2,14 @@
 /**
  * User: zjkiza
  * Date: 4/22/19
- * Time: 9:22 AM
+ * Time: 9:22 AM.
  */
 
 namespace App\Repository;
 
 use App\Model\Manufacturer;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class ManufacturerRepository implements IManufacturer
 {

@@ -15,7 +15,6 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-
     ];
 
     /**
@@ -24,31 +23,28 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
-
     ];
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Exception $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $exception
+     *
      * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
         if ($exception instanceof ApiModelNotFoundException) {
-
-            return $this->createErrorApiResponse($exception->getMessage() , 404);
+            return $this->createErrorApiResponse($exception->getMessage(), 404);
         }
 
         if ($exception instanceof ApiAuthenticationException) {
-
-            return $this->createErrorApiResponse($exception->getMessage() , 401);
+            return $this->createErrorApiResponse($exception->getMessage(), 401);
         }
 
         if ($exception instanceof ApiUserRegisterException) {
-
-            return $this->createErrorApiResponse($exception->getMessage() , 422);
+            return $this->createErrorApiResponse($exception->getMessage(), 422);
         }
 
         return parent::render($request, $exception);
@@ -56,7 +52,8 @@ class Handler extends ExceptionHandler
 
     /**
      * @param string $message
-     * @param int $code
+     * @param int    $code
+     *
      * @return JsonResponse
      */
     protected function createErrorApiResponse(string $message, int $code): JsonResponse

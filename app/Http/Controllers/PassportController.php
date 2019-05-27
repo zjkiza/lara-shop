@@ -20,6 +20,7 @@ class PassportController extends Controller
 
     /**
      * PassportController constructor.
+     *
      * @param IUser $user
      */
     public function __construct(IUser $user)
@@ -29,6 +30,7 @@ class PassportController extends Controller
 
     /**
      * @param UserRegisterApiRequest $request
+     *
      * @return JsonResponse
      */
     public function register(UserRegisterApiRequest $request): JsonResponse
@@ -42,13 +44,14 @@ class PassportController extends Controller
 
     /**
      * @param UserLoginApiRequest $request
-     * @return JsonResponse
+     *
      * @throws ApiAuthenticationException
+     *
+     * @return JsonResponse
      */
     public function login(UserLoginApiRequest $request): JsonResponse
     {
-        if (!auth()->attempt($request->all())) {
-
+        if (! auth()->attempt($request->all())) {
             throw new ApiAuthenticationException('Unauthorised');
         }
 
@@ -58,7 +61,7 @@ class PassportController extends Controller
     }
 
     /**
-     * Returns Authenticated User Details
+     * Returns Authenticated User Details.
      *
      * @return JsonResponse
      */
