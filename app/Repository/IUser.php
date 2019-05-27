@@ -7,7 +7,6 @@
 
 namespace App\Repository;
 
-
 use App\Http\Requests\UserRegisterApiRequest;
 
 interface IUser

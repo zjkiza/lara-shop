@@ -94,7 +94,7 @@ class ProductController extends Controller
         $product = $this->product->getProduct($id);
 
         return view('product.show', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
@@ -142,7 +142,9 @@ class ProductController extends Controller
     {
         $this->product->updateProduct($id, $request->validated(), $request->get('details'));
 
-        return redirect()->route('product.index')->with('success', 'Product success updated');
+        return redirect()
+            ->route('product.index')
+            ->with('success', 'Product success updated');
     }
 
     /**
@@ -156,7 +158,9 @@ class ProductController extends Controller
     {
         $this->product->deleteProduct($id);
 
-        return redirect()->route('product.index')->with('success', 'Product success deleted');
+        return redirect()
+            ->route('product.index')
+            ->with('success', 'Product success deleted');
     }
 
     /**
@@ -169,7 +173,7 @@ class ProductController extends Controller
         $products = $product->filter($filters)->paginate(10);
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
         ]);
     }
 }

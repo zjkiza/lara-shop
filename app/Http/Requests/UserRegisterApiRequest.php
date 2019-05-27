@@ -9,8 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegisterApiRequest extends FormRequest
 {
-    use ValidationErrorMessage;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -40,7 +38,9 @@ class UserRegisterApiRequest extends FormRequest
         $validator->after(function (Validator $validator) {
             $error = $validator->errors()->getMessages();
             if ($error) {
-                throw new ApiUserRegisterException($this->getValidationErrorMessage($error));
+                throw new ApiUserRegisterException(
+                    (new ValidationErrorMessage)->getValidationErrorMessage($error)
+                );
             }
         });
     }

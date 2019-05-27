@@ -25,7 +25,7 @@ class ProductRepository implements IProduct
     }
 
     /**
-     * @param null|string $inputSearch
+     * @param string|null $inputSearch
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
@@ -47,7 +47,10 @@ class ProductRepository implements IProduct
      */
     public function getProduct(int $id)
     {
-        return $this->product->with('category', 'manufacturer', 'pictures', 'details')->findOrFail($id);
+        return $this
+            ->product
+            ->with('category', 'manufacturer', 'pictures', 'details')
+            ->findOrFail($id);
     }
 
     /**
@@ -59,7 +62,7 @@ class ProductRepository implements IProduct
         /** @var Product $saveProduct */
         $saveProduct = $this->product->create($data);
 
-        $pivotData = $pivot ?: [];
+        $pivotData = $pivot ?? [];
         $saveProduct->details()->sync($pivotData);
     }
 
@@ -75,7 +78,7 @@ class ProductRepository implements IProduct
 
         $product->update($data);
 
-        $pivotData = $pivot ?: [];
+        $pivotData = $pivot ?? [];
         $product->details()->sync($pivotData);
     }
 

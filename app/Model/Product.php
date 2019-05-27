@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property double $price
  * @property int $category_id
  * @property int $manufacturer_id
- *
  * @package App\Model
  */
 class Product extends Model

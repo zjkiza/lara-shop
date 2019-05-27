@@ -20,6 +20,7 @@ abstract class QueryFilter
 
     /**
      * QueryFilter constructor.
+     *
      * @param Request $request
      */
     public function __construct(Request $request)
@@ -43,7 +44,7 @@ abstract class QueryFilter
     {
         $this->builder = $builder;
 
-        foreach ($this->filters() as $name => $value){
+        foreach ($this->filters() as $name => $value) {
             if (method_exists($this, $name)) {
                 call_user_func_array([$this, $name], array_filter([$value]));
             }

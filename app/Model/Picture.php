@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property int $priority
  * @property int $product_id
- *
  * @package App
  */
 class Picture extends Model

@@ -48,6 +48,7 @@ class PassportController extends Controller
     public function login(UserLoginApiRequest $request): JsonResponse
     {
         if (!auth()->attempt($request->all())) {
+
             throw new ApiAuthenticationException('Unauthorised');
         }
 

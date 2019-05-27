@@ -7,7 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Repository\IProduct;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class ProductAPIController extends BaseApiController
 {
@@ -34,6 +34,7 @@ class ProductAPIController extends BaseApiController
         $products = $this->product->getAllProduct($request->query->get('search'));
 
         if (!$products) {
+
             throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
         }
 
@@ -53,7 +54,7 @@ class ProductAPIController extends BaseApiController
     {
         try {
             $product = $this->product->getProduct($id);
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $exception) {
             throw new ApiModelNotFoundException('');
         }
 
@@ -96,7 +97,7 @@ class ProductAPIController extends BaseApiController
     {
         try {
             $this->product->deleteProduct($id);
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $exception) {
             throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
         }
 

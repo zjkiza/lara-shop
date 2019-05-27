@@ -7,7 +7,6 @@
 
 namespace App\Repository;
 
-
 use App\Model\Picture;
 use App\Model\Product;
 use Illuminate\Database\Eloquent\Builder;
@@ -47,7 +46,6 @@ class PictureRepository implements IPicture
 
     /**
      * @param int $id
-     *
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getPicturesForProduct(int $id)
@@ -63,7 +61,7 @@ class PictureRepository implements IPicture
     {
         $product->pictures()->create([
             'name' => $pictureName,
-            'priority' => $this->getPriorityForPicture($product->id)
+            'priority' => $this->getPriorityForPicture($product->id),
         ]);
     }
 
@@ -85,6 +83,8 @@ class PictureRepository implements IPicture
     {
         $picturesForProduct = $this->getPicturesForProduct($id);
 
-        return $picturesForProduct->isEmpty() ? 1 : $picturesForProduct->max('priority') + 1;
+        return $picturesForProduct->isEmpty()
+            ? 1
+            : $picturesForProduct->max('priority') + 1;
     }
 }

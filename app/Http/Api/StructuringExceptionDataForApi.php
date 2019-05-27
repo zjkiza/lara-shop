@@ -28,7 +28,7 @@ class StructuringExceptionDataForApi
     /**
      * @return array
      */
-    public function getStructuringDataForApi():array
+    public function getStructuringDataForApi(): array
     {
         return [
             'error' => $this->error,

@@ -24,6 +24,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('user-api', 'PassportController@details');
 
     Route::resource('products-api', 'ProductAPIController', [
-        'except' => ['create', 'edit']
+        'except' => [
+            'create',
+            'edit',
+        ],
     ]);
 });

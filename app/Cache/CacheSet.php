@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Redis;
 
 class CacheSet
 {
-    protected const CACHE_TIME_PAGE = 60 * 10;
-    protected const CACHE_TIME_ELEMENT = 60 * 5;
+    protected const CACHE_TIME_PAGE = 60 * 1;
+    protected const CACHE_TIME_ELEMENT = 60 * 1;
 
     /**
      * @param string $name
@@ -43,7 +43,9 @@ class CacheSet
      */
     protected function remember(string $key, int $minutes, callable $callback)
     {
-        if ($values = Redis::get($key)) {
+        $values = Redis::get($key);
+
+        if ($values) {
 
             return unserialize($values);
         }

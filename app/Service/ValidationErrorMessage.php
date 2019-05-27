@@ -7,14 +7,17 @@
 
 namespace App\Service;
 
-trait ValidationErrorMessage
+class ValidationErrorMessage
 {
     /**
      * @param array $requestParameters
      * @param string $parameters
      * @return string
      */
-    private function getValidationErrorMessage(array $requestParameters, string $parameters = ''): string
+    public function getValidationErrorMessage(
+        array $requestParameters,
+        string $parameters = ''
+    ): string
     {
         foreach ($requestParameters as $key => $errors) {
             $parameters .= $this->getErrors($errors, $key);
@@ -29,7 +32,11 @@ trait ValidationErrorMessage
      * @param string $errorMessage
      * @return string
      */
-    private function getErrors(array $errors, string $variable, string $errorMessage = ''): string
+    public function getErrors(
+        array $errors,
+        string $variable,
+        string $errorMessage = ''
+    ): string
     {
         foreach ($errors as $error) {
             $errorMessage .= $error;

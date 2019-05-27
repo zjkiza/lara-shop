@@ -43,7 +43,7 @@ class PictureController extends Controller
     {
         $product = $this->product->getProduct($id);
 
-        return view('picture.addPicture',[
+        return view('picture.addPicture', [
             'product' => $product
         ]);
     }
@@ -70,12 +70,12 @@ class PictureController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $id,  int $product_id): RedirectResponse
+    public function destroy(int $id, int $product_id): RedirectResponse
     {
         $this->picture->deletePicture($id);
 
         return redirect()->route('product.show', [
-            'product' => $product_id
+            'product' => $product_id,
         ]);
     }
 }

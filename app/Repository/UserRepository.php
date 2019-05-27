@@ -7,7 +7,6 @@
 
 namespace App\Repository;
 
-
 use App\Events\UserRegistered;
 use App\Http\Requests\UserRegisterApiRequest;
 use App\User;

@@ -9,7 +9,6 @@ namespace App\Repository;
 
 use App\Model\Detail;
 use Illuminate\Database\Eloquent\Builder;
-
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DetailRepository implements IDetail

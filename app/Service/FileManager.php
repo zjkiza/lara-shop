@@ -28,7 +28,7 @@ class FileManager
      * @param UploadedFile $file
      * @return string
      */
-    public function uploadFile(UploadedFile $file):string
+    public function uploadFile(UploadedFile $file): string
     {
         $fileName = sprintf('%s.%s', md5(uniqid('', true)), $file->extension());
 
@@ -41,14 +41,14 @@ class FileManager
      * @param $file
      * @return bool
      */
-    public function removeFile($file):bool
+    public function removeFile($file): bool
     {
         $path = sprintf('%s/%s', $this->getTargetDirectory(), $file);
 
-        $fs = new Filesystem();
+        $filesystem = new Filesystem();
 
-        $fs->delete($path);
+        $filesystem->delete($path);
 
-        return !$fs->exists($path);
+        return !$filesystem->exists($path);
     }
 }

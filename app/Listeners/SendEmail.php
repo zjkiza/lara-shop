@@ -24,6 +24,6 @@ class SendEmail
      */
     public function handle(UserRegistered $event): void
     {
-        var_dump('sending a welcome email to '.$event->user->email);
+        var_dump('sending a welcome email to '.$event->getUser()->email);
     }
 }

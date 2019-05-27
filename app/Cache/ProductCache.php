@@ -29,7 +29,7 @@ class ProductCache extends CacheSet implements IProduct
     }
 
     /**
-     * @param null|string $inputSearch
+     * @param string|null $inputSearch
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator

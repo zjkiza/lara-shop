@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class ProductFilters
+ *
  * @package App\Repository
  */
 class ProductFilters extends QueryFilter
