@@ -171,15 +171,15 @@ class ProductController extends Controller
      */
     public function filters(ProductFilters $filters, Product $product)
     {
-        $products = $product->filter($filters)->paginate(10);
+        $products = $product->filter($filters)->paginate();
 
         $paginationQuery = (new PaginationForFilter())->addQueryToPagination(
-            ['status', 'manufacturer', 'name', 'category']
+            $filters->getAllFilters()
         );
 
         return view('product.index', [
             'products' => $products,
-            'query'=> $paginationQuery,
+            'paginationQuery'=> $paginationQuery,
         ]);
     }
 }

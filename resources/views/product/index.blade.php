@@ -85,7 +85,11 @@
 
     </div>
     <div class="row">
-        {{ $products->onEachSide(0)->links() }}
+        @if (isset($paginationQuery))
+            {{ $products->onEachSide(0)->appends($paginationQuery)->links() }}
+        @else
+            {{ $products->onEachSide(0)->links() }}
+        @endif
     </div>
 
 @endsection

@@ -54,4 +54,9 @@ class ProductFilters extends QueryFilter
     {
         return $this->builder->orderBy('category_name', $order);
     }
+
+    public function getAllFilters(): array
+    {
+        return get_class_methods($this);
+    }
 }
