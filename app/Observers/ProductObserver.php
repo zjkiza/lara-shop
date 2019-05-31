@@ -13,7 +13,7 @@ class ProductObserver
      */
     public function updated(Product $product): void
     {
-        if (0 === (int) $product->quantity && 'old' !== $product->status) {
+        if ((int) $product->quantity === 0 && $product->status !== 'old') {
             $product->status = 'old';
             $product->save();
         }

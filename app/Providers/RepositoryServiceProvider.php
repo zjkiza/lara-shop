@@ -24,33 +24,24 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(IProduct::class, function () {
+        $this->app->bind(IProduct::class, static function () {
             return new ProductCache(new ProductRepository());
         });
 
         $this->app->bind(
-            IManufacturer::class,
-            ManufacturerRepository::class
+            IManufacturer::class, ManufacturerRepository::class
         );
-
         $this->app->bind(
-            ICategory::class,
-            CategoryRepository::class
+            ICategory::class, CategoryRepository::class
         );
-
         $this->app->bind(
-            IDetail::class,
-            DetailRepository::class
+            IDetail::class, DetailRepository::class
         );
-
         $this->app->bind(
-            IPicture::class,
-            PictureRepository::class
+            IPicture::class, PictureRepository::class
         );
-
         $this->app->bind(
-            IUser::class,
-            UserRepository::class
+            IUser::class, UserRepository::class
         );
     }
 

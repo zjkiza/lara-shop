@@ -9,7 +9,6 @@ namespace App\Repository;
 
 use App\Model\Picture;
 use App\Model\Product;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 
 class PictureRepository implements IPicture
@@ -23,16 +22,6 @@ class PictureRepository implements IPicture
     public function __construct()
     {
         $this->picture = (new Picture())->newQuery();
-    }
-
-    public function getAllPicture(?string $inputSearch): LengthAwarePaginator
-    {
-        // TODO: Implement getAllPicture() method.
-    }
-
-    public function getPictureForForm()
-    {
-        // TODO: Implement getPictureForForm() method.
     }
 
     /**

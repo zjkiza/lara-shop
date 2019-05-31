@@ -10,6 +10,7 @@ use App\Repository\DetailRepository;
 use App\Repository\IProduct;
 use App\Repository\ManufacturerRepository;
 use App\Repository\ProductFilters;
+use App\Service\PaginationForFilter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -172,8 +173,13 @@ class ProductController extends Controller
     {
         $products = $product->filter($filters)->paginate(10);
 
+        $paginationQuery = (new PaginationForFilter())->addQueryToPagination(
+            ['status', 'manufacturer', 'name', 'category']
+        );
+
         return view('product.index', [
             'products' => $products,
+            'query'=> $paginationQuery,
         ]);
     }
 }

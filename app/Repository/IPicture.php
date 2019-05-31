@@ -12,10 +12,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface IPicture
 {
-    public function getAllPicture(?string $inputSearch): LengthAwarePaginator;
-
-    public function getPictureForForm();
-
     public function getPicture(int $id);
 
     public function getPicturesForProduct(int $id);

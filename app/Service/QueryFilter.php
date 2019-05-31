@@ -38,7 +38,6 @@ abstract class QueryFilter
 
     /**
      * @param Builder $builder
-     *
      * @return Builder
      */
     public function apply(Builder $builder): Builder

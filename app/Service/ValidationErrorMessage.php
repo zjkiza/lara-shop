@@ -12,7 +12,6 @@ class ValidationErrorMessage
     /**
      * @param array  $requestParameters
      * @param string $parameters
-     *
      * @return string
      */
     public function getValidationErrorMessage(
@@ -30,7 +29,6 @@ class ValidationErrorMessage
      * @param array  $errors
      * @param string $variable
      * @param string $errorMessage
-     *
      * @return string
      */
     public function getErrors(

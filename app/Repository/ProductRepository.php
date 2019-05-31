@@ -26,7 +26,6 @@ class ProductRepository implements IProduct
 
     /**
      * @param string|null $inputSearch
-     *
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
@@ -44,7 +43,6 @@ class ProductRepository implements IProduct
 
     /**
      * @param int $id
-     *
      * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function getProduct(int $id)

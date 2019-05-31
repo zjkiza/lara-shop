@@ -26,7 +26,6 @@ class FileManager
 
     /**
      * @param UploadedFile $file
-     *
      * @return string
      */
     public function uploadFile(UploadedFile $file): string
@@ -40,7 +39,6 @@ class FileManager
 
     /**
      * @param $file
-     *
      * @return bool
      */
     public function removeFile($file): bool

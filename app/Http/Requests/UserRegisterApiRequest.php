@@ -35,7 +35,7 @@ class UserRegisterApiRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator) {
+        $validator->after(static function (Validator $validator) {
             $error = $validator->errors()->getMessages();
             if ($error) {
                 throw new ApiUserRegisterException(
