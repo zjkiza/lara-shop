@@ -32,7 +32,7 @@ class ProductRepository implements IProduct
     {
         $products = $this->product;
 
-        if (null !== $inputSearch) {
+        if ($inputSearch !== null) {
             $products->where('name', 'like', '%'.$inputSearch.'%');
         }
 

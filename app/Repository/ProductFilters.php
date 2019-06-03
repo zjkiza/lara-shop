@@ -17,7 +17,6 @@ class ProductFilters extends QueryFilter
 {
     /**
      * @param string $status
-     *
      * @return Builder
      */
     public function status(string $status): Builder
@@ -27,32 +26,38 @@ class ProductFilters extends QueryFilter
 
     /**
      * @param string $order
-     *
      * @return Builder
      */
     public function manufacturer(string $order = 'asc'): Builder
     {
-        return $this->builder->orderBy('manufacturer_name', $order);
+        return $this->builder->orderBy(
+            'manufacturer_name',
+            $this->validOrderBy($order)
+        );
     }
 
     /**
      * @param string $order
-     *
      * @return Builder
      */
     public function name(string $order = 'asc'): Builder
     {
-        return $this->builder->orderBy('name', $order);
+        return $this->builder->orderBy(
+            'name',
+            $this->validOrderBy($order)
+        );
     }
 
     /**
      * @param string $order
-     *
      * @return Builder
      */
     public function category(string $order = 'asc'): Builder
     {
-        return $this->builder->orderBy('category_name', $order);
+        return $this->builder->orderBy(
+            'category_name',
+            $this->validOrderBy($order)
+        );
     }
 
     public function getAllFilters(): array

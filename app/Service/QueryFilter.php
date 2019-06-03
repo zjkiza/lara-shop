@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 
 abstract class QueryFilter
 {
+    protected const ORDER_BY = ['asc', 'desc'];
+    protected const DEFAULT_ORDER_BY = 'asc';
+
     /** @var Request $request */
     protected $request;
 
@@ -51,5 +54,16 @@ abstract class QueryFilter
         }
 
         return $this->builder;
+    }
+
+    /**
+     * @param string $order
+     * @return string
+     */
+    protected function validOrderBy(string $order): string
+    {
+        return in_array($order, self::ORDER_BY, true)
+            ? $order
+            : self::DEFAULT_ORDER_BY;
     }
 }

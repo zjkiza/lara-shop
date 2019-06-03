@@ -13,8 +13,6 @@ use App\Repository\IPicture;
 
 class PictureCache extends CacheSet implements IPicture
 {
-    private const PICTURE = 'picture';
-
     /**
      * @var IPicture
      */
@@ -49,5 +47,4 @@ class PictureCache extends CacheSet implements IPicture
     {
         $this->picture->deletePicture($id);
     }
-
 }

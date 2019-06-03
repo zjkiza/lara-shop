@@ -35,7 +35,6 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
@@ -54,7 +53,6 @@ class ProductController extends Controller
      * @param CategoryRepository     $categoryRepository
      * @param DetailRepository       $detailRepository
      * @param Product                $product
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(
@@ -73,7 +71,6 @@ class ProductController extends Controller
 
     /**
      * @param StoreProductRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreProductRequest $request): RedirectResponse
@@ -87,7 +84,6 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(int $id)
@@ -107,7 +103,6 @@ class ProductController extends Controller
      * @param CategoryRepository     $categoryRepository
      * @param DetailRepository       $detailRepository
      * @param Detail                 $detail
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(
@@ -135,7 +130,6 @@ class ProductController extends Controller
      *
      * @param int                 $id
      * @param StoreProductRequest $request
-     *
      * @return RedirectResponse
      */
     public function update(int $id, StoreProductRequest $request): RedirectResponse
@@ -151,7 +145,6 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     *
      * @return RedirectResponse
      */
     public function destroy(int $id): RedirectResponse
@@ -166,7 +159,6 @@ class ProductController extends Controller
     /**
      * @param ProductFilters $filters
      * @param Product        $product
-     *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function filters(ProductFilters $filters, Product $product)
