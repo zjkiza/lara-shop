@@ -4,6 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 
-class ApiAuthenticationException extends Exception
+final class ApiAuthentication extends Exception
 {
 }

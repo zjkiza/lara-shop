@@ -84,7 +84,6 @@ class ProductRepository implements IProduct
 
     /**
      * @param int $id
-     *
      * @throws \Exception
      */
     public function deleteProduct(int $id): void

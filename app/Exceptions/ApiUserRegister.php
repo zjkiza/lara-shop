@@ -4,6 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 
-class ApiUserRegisterException extends Exception
+final class ApiUserRegister extends Exception
 {
 }

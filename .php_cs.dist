@@ -24,6 +24,8 @@ return PhpCsFixer\Config::create()
         'no_superfluous_elseif' => true,
         'no_useless_return' => true,
         'simplified_null_return' => true,
+        'no_blank_lines_after_phpdoc' => false,
+        'phpdoc_separation' => false,
     ))
     ->setFinder($finder)
 ;

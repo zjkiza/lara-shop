@@ -71,7 +71,6 @@ class Product extends Model
 
     /**
      * @param QueryFilter $queryFilter
-     *
      * @return Builder
      */
     public function filter(QueryFilter $queryFilter): Builder
@@ -81,7 +80,6 @@ class Product extends Model
 
     /**
      * @param Builder $builder
-     *
      * @return Builder
      */
     public function joinTables(Builder $builder): Builder

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ApiAuthenticationException;
+use App\Exceptions\ApiAuthentication;
 use App\Http\Requests\UserLoginApiRequest;
 use App\Http\Requests\UserRegisterApiRequest;
 use App\Repository\IUser;
@@ -30,7 +30,6 @@ class PassportController extends Controller
 
     /**
      * @param UserRegisterApiRequest $request
-     *
      * @return JsonResponse
      */
     public function register(UserRegisterApiRequest $request): JsonResponse
@@ -44,15 +43,13 @@ class PassportController extends Controller
 
     /**
      * @param UserLoginApiRequest $request
-     *
-     * @throws ApiAuthenticationException
-     *
+     * @throws ApiAuthentication
      * @return JsonResponse
      */
     public function login(UserLoginApiRequest $request): JsonResponse
     {
         if (! auth()->attempt($request->all())) {
-            throw new ApiAuthenticationException('Unauthorised');
+            throw new ApiAuthentication('Unauthorised');
         }
 
         $token = auth()->user()->createToken(self::TOKEN_NAME)->accessToken;

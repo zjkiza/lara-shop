@@ -31,7 +31,6 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * @param string|null $inputSearch
-     *
      * @return LengthAwarePaginator
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
@@ -49,7 +48,6 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * @param int $id
-     *
      * @return mixed
      */
     public function getProduct(int $id)
@@ -84,7 +82,6 @@ class ProductCache extends CacheSet implements IProduct
 
     /**
      * @param int $id
-     *
      * @throws \Exception
      */
     public function deleteProduct(int $id): void

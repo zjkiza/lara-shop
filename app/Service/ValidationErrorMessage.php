@@ -7,7 +7,7 @@
 
 namespace App\Service;
 
-class ValidationErrorMessage
+final class ValidationErrorMessage
 {
     /**
      * @param array  $requestParameters

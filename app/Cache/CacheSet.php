@@ -17,7 +17,6 @@ class CacheSet
     /**
      * @param string $name
      * @param int    $id
-     *
      * @return string
      */
     protected function getKey(string $name, int $id): string
@@ -29,7 +28,6 @@ class CacheSet
      * @param string $name
      * @param int    $page
      * @param string $inputSearch
-     *
      * @return string
      */
     protected function getKeyForPage(string $name, int $page, string $inputSearch): string
@@ -41,7 +39,6 @@ class CacheSet
      * @param $key
      * @param $minutes
      * @param $callback
-     *
      * @return mixed
      */
     protected function remember(string $key, int $minutes, callable $callback)

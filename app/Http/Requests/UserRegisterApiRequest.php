@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Exceptions\ApiUserRegisterException;
+use App\Exceptions\ApiUserRegister;
 use App\Service\ValidationErrorMessage;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -38,7 +38,7 @@ class UserRegisterApiRequest extends FormRequest
         $validator->after(static function (Validator $validator) {
             $error = $validator->errors()->getMessages();
             if ($error) {
-                throw new ApiUserRegisterException(
+                throw new ApiUserRegister(
                     (new ValidationErrorMessage())->getValidationErrorMessage($error)
                 );
             }

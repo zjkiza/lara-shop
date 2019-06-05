@@ -26,7 +26,6 @@ class Detail extends Model
 
     /**
      * @param Product $product
-     *
      * @return array
      */
     public function getCheckedIds(Product $product): array

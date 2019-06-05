@@ -25,8 +25,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param int $id
-     *
+     * @param  int                                                                                            $id $id
      * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function getPicture(int $id)
@@ -35,8 +34,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param int $id
-     *
+     * @param  int                                                $id
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getPicturesForProduct(int $id)
@@ -57,8 +55,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param int $id
-     *
+     * @param  int        $id
      * @throws \Exception
      */
     public function deletePicture(int $id): void
@@ -68,11 +65,10 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param int $id
-     *
-     * @return int|mixed
+     * @param  int $id
+     * @return int
      */
-    private function getPriorityForPicture(int $id)
+    private function getPriorityForPicture(int $id): int
     {
         $picturesForProduct = $this->getPicturesForProduct($id);
 

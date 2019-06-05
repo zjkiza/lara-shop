@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Model\Product;
 
-class ProductObserver
+final class ProductObserver
 {
     /**
      * Handle the product "updated" event.

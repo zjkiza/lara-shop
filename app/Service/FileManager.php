@@ -10,7 +10,7 @@ namespace App\Service;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 
-class FileManager
+final class FileManager
 {
     private $targetDirectory;
 

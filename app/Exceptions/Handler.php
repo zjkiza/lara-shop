@@ -30,20 +30,19 @@ class Handler extends ExceptionHandler
      *
      * @param \Illuminate\Http\Request $request
      * @param \Exception               $exception
-     *
      * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof ApiModelNotFoundException) {
+        if ($exception instanceof ApiModelNotFound) {
             return $this->createErrorApiResponse($exception->getMessage(), 404);
         }
 
-        if ($exception instanceof ApiAuthenticationException) {
+        if ($exception instanceof ApiAuthentication) {
             return $this->createErrorApiResponse($exception->getMessage(), 401);
         }
 
-        if ($exception instanceof ApiUserRegisterException) {
+        if ($exception instanceof ApiUserRegister) {
             return $this->createErrorApiResponse($exception->getMessage(), 422);
         }
 
@@ -53,7 +52,6 @@ class Handler extends ExceptionHandler
     /**
      * @param string $message
      * @param int    $code
-     *
      * @return JsonResponse
      */
     protected function createErrorApiResponse(string $message, int $code): JsonResponse

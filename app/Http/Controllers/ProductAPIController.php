@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ApiModelNotFoundException;
+use App\Exceptions\ApiModelNotFound;
 use App\Http\Requests\StoreProductRequest;
 use App\Repository\IProduct;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -28,7 +28,6 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param Request $request
-     *
      * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
@@ -36,7 +35,7 @@ class ProductAPIController extends BaseApiController
         $products = $this->product->getAllProduct($request->query->get('search'));
 
         if (! $products) {
-            throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
+            throw new ApiModelNotFound('Does not exist any data with the specified identification');
         }
 
         return $this->createApiResponse(
@@ -49,7 +48,6 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param int $id
-     *
      * @return JsonResponse
      */
     public function show(int $id): JsonResponse
@@ -57,7 +55,7 @@ class ProductAPIController extends BaseApiController
         try {
             $product = $this->product->getProduct($id);
         } catch (ModelNotFoundException $exception) {
-            throw new ApiModelNotFoundException('');
+            throw new ApiModelNotFound('');
         }
 
         return $this->createApiResponse(
@@ -70,7 +68,6 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param StoreProductRequest $request
-     *
      * @return JsonResponse
      */
     public function store(StoreProductRequest $request): JsonResponse
@@ -83,7 +80,6 @@ class ProductAPIController extends BaseApiController
     /**
      * @param int                 $id
      * @param StoreProductRequest $request
-     *
      * @return JsonResponse
      */
     public function update(int $id, StoreProductRequest $request): JsonResponse
@@ -95,7 +91,6 @@ class ProductAPIController extends BaseApiController
 
     /**
      * @param int $id
-     *
      * @return JsonResponse
      */
     public function destroy(int $id): JsonResponse
@@ -103,7 +98,7 @@ class ProductAPIController extends BaseApiController
         try {
             $this->product->deleteProduct($id);
         } catch (ModelNotFoundException $exception) {
-            throw new ApiModelNotFoundException('Does not exist any data with the specified identification');
+            throw new ApiModelNotFound('Does not exist any data with the specified identification');
         }
 
         return $this->createApiResponse(204, 'Product success delete');

@@ -37,7 +37,6 @@ class PictureController extends Controller
      * Show the form for creating a new resource.
      *
      * @param int $id
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(int $id)
@@ -68,7 +67,6 @@ class PictureController extends Controller
      *
      * @param int $id
      * @param int $product_id
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $id, int $product_id): RedirectResponse

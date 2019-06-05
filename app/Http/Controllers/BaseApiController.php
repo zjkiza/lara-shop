@@ -17,7 +17,6 @@ class BaseApiController extends Controller
      * @param bool   $success
      * @param string $message
      * @param int    $statusCode
-     *
      * @return JsonResponse
      */
     protected function createApiResponse(

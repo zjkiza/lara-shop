@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserRegistered;
 
-class SendEmail
+final class SendEmail
 {
     /**
      * Create the event listener.

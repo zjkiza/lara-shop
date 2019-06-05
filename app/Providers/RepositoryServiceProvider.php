@@ -17,7 +17,7 @@ use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
-class RepositoryServiceProvider extends ServiceProvider
+final class RepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
