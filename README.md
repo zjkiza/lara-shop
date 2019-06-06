@@ -12,7 +12,7 @@ Use of Larval components through the example "CMS for e-commerce"
     - filter for products
     - sorting as per : product, manufacturer and category
     - service file manager
-    - pagination for filters (complex query)
+    - pagination for complex query
     - validation check for filter orderBy
 - using 
     - flash messages
