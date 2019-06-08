@@ -14,12 +14,14 @@ Use of Larval components through the example "CMS for e-commerce"
     - service file manager
     - pagination for complex query
     - validation check for filter orderBy
+    - error message for validation (API)
 - using 
     - flash messages
     - validation form requests
     - pagination
     - Repository pattern
     - handler for Eloquent events
+    - Laravel passport
     - error handling for API
     - Redis cache
     - Decoration pattern
