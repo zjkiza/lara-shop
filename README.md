@@ -1,6 +1,6 @@
 # lara-shop
-Use of Larval components through the example "CMS for e-commerce" 
-=================================================================
+Use of Larval components through the example 
+============================================
 
 - CRUD for products
 - Create RESTful API with Authentication Laravel Passport

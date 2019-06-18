@@ -20,15 +20,21 @@ class ProductController extends Controller
      * @var IProduct
      */
     private $product;
+    /**
+     * @var PaginationForFilter
+     */
+    private $paginationForFilter;
 
     /**
      * ProductController constructor.
      *
      * @param IProduct $product
+     * @param PaginationForFilter $paginationForFilter
      */
-    public function __construct(IProduct $product)
+    public function __construct(IProduct $product, PaginationForFilter $paginationForFilter)
     {
         $this->product = $product;
+        $this->paginationForFilter = $paginationForFilter;
     }
 
     /**
@@ -165,7 +171,7 @@ class ProductController extends Controller
     {
         $products = $product->filter($filters)->paginate();
 
-        $paginationQuery = (new PaginationForFilter())->addQueryToPagination(
+        $paginationQuery = $this->paginationForFilter->addQueryToPagination(
             $filters->getAllFilters()
         );
 

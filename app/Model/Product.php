@@ -25,6 +25,8 @@ class Product extends Model
 {
     protected $guarded = [];
 
+    protected $perPage = 3;
+
     /**
      * @return BelongsTo
      */

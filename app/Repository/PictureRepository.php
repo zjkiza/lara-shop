@@ -7,21 +7,21 @@
 
 namespace App\Repository;
 
-use App\Model\Picture;
 use App\Model\Product;
 use Illuminate\Database\Eloquent\Builder;
 
 class PictureRepository implements IPicture
 {
     /** @var Builder */
-    private $picture;
+    private $builder;
 
     /**
      * ProductRepository constructor.
+     * @param Builder $builder
      */
-    public function __construct()
+    public function __construct(Builder $builder)
     {
-        $this->picture = (new Picture())->newQuery();
+        $this->builder = $builder;
     }
 
     /**
@@ -30,7 +30,7 @@ class PictureRepository implements IPicture
      */
     public function getPicture(int $id)
     {
-        return $this->picture->findOrFail($id);
+        return $this->builder->findOrFail($id);
     }
 
     /**
@@ -39,7 +39,7 @@ class PictureRepository implements IPicture
      */
     public function getPicturesForProduct(int $id)
     {
-        return $this->picture->where('product_id', '=', $id)->get();
+        return $this->builder->where('product_id', '=', $id)->get();
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Cache\ProductCache;
+use App\Model\Picture;
+use App\Model\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\DetailRepository;
 use App\Repository\ICategory;
@@ -25,7 +27,9 @@ final class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(IProduct::class, static function () {
-            return new ProductCache(new ProductRepository());
+            return new ProductCache(
+                new ProductRepository((new Product)->newQuery())
+            );
         });
 
         $this->app->bind(
@@ -38,8 +42,11 @@ final class RepositoryServiceProvider extends ServiceProvider
             IDetail::class, DetailRepository::class
         );
         $this->app->bind(
-            IPicture::class, PictureRepository::class
+            IPicture::class,  static function () {
+                return new PictureRepository((new Picture())->newQuery());
+            }
         );
+
         $this->app->bind(
             IUser::class, UserRepository::class
         );

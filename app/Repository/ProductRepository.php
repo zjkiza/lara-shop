@@ -14,14 +14,15 @@ use Illuminate\Database\Eloquent\Builder;
 class ProductRepository implements IProduct
 {
     /** @var Builder */
-    private $product;
+    private $builder;
 
     /**
      * ProductRepository constructor.
+     * @param Builder $builder
      */
-    public function __construct()
+    public function __construct(Builder $builder)
     {
-        $this->product = (new Product())->newQuery();
+        $this->builder = $builder;
     }
 
     /**
@@ -30,7 +31,7 @@ class ProductRepository implements IProduct
      */
     public function getAllProduct(?string $inputSearch): LengthAwarePaginator
     {
-        $products = $this->product;
+        $products = $this->builder;
 
         if ($inputSearch !== null) {
             $products->where('name', 'like', '%'.$inputSearch.'%');
@@ -50,7 +51,7 @@ class ProductRepository implements IProduct
     public function getProduct(int $id)
     {
         return $this
-            ->product
+            ->builder
             ->with('category', 'manufacturer', 'pictures', 'details')
             ->findOrFail($id);
     }
@@ -62,7 +63,7 @@ class ProductRepository implements IProduct
     public function storeProduct(array $data, ?array $pivot): void
     {
         /** @var Product $saveProduct */
-        $saveProduct = $this->product->create($data);
+        $saveProduct = $this->builder->create($data);
 
         $pivotData = $pivot ?? [];
         $saveProduct->details()->sync($pivotData);
