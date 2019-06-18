@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ApiModelNotFound;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductResource;
 use App\Repository\IProduct;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -38,11 +40,13 @@ class ProductAPIController extends BaseApiController
             throw new ApiModelNotFound('Does not exist any data with the specified identification');
         }
 
+        $productsCollection = new ProductCollection($products);
+
         return $this->createApiResponse(
             200,
             'Success find',
             true,
-            $products
+            $productsCollection
         );
     }
 
@@ -58,11 +62,13 @@ class ProductAPIController extends BaseApiController
             throw new ApiModelNotFound('');
         }
 
+        $productResource = new ProductResource($product);
+
         return $this->createApiResponse(
             200,
             'Success find',
             true,
-            $product
+            $productResource
         );
     }
 

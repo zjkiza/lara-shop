@@ -21,9 +21,10 @@ Use of Larval components through the example "CMS for e-commerce"
     - pagination
     - Repository pattern
     - handler for Eloquent events
-    - Laravel passport
+    - Laravel Passport
     - error handling for API
     - Redis cache
     - Decoration pattern
     - Events and listeners
+    - Eloquent API Resource
 - optimisation eloquent queries    

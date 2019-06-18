@@ -25,8 +25,8 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param  int                                                                                            $id $id
-     * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     * @param  int $id
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
      */
     public function getPicture(int $id)
     {
@@ -34,7 +34,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param  int                                                $id
+     * @param  int $id
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getPicturesForProduct(int $id)
@@ -55,7 +55,7 @@ class PictureRepository implements IPicture
     }
 
     /**
-     * @param  int        $id
+     * @param  int $id
      * @throws \Exception
      */
     public function deletePicture(int $id): void
